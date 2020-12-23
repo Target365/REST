@@ -263,7 +263,7 @@ This example reverses a previously billed Strex payment transaction. The origina
 curl -XDELETE -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" 'https://test.target365.io/api/strex/transactions/3202b85f-fac2-432a-8e55-a20ab8680211'
 ```
 
-Response:
+#### Response:
 ```JSON
 {
     "TransactionId": "-3202b85f-fac2-432a-8e55-a20ab8680211"
@@ -349,62 +349,112 @@ If the MSISDN can't be determined automatically on the landing page the end user
 
 ![one-time sequence](https://github.com/Target365/sdk-for-net/raw/master/oneclick-simple-transaction-flow.png "One-time sequence diagram")
 
-```C#
-var transaction = new StrexTransaction
+#### HTTP POST /api/strex/transactions
+```JSON
 {
-    TransactionId = transactionId,
-    ShortNumber = "2002",
-    MerchantId = "YOUR_MERCHANT_ID",
-    Price = 1,
-    ServiceCode = ServiceCodes.NonCommercialDonation,
-    InvoiceText = "Donation test"
-};
+    "TransactionId": "5402b85f-fac2-212a-8e55-a20ab8680765",
+    "ShortNumber": "2002",
+    "MerchantId": "YOUR_MERCHANT_ID",
+    "Price": 1,
+    "ServiceCode": "14002",
+    "InvoiceText": "Donation test",
+    "properties": {
+      "RedirectUrl": https://your-return-url.com?id=5402b85f-fac2-212a-8e55-a20ab8680765"
+    }
+}
 
-transaction.Properties["RedirectUrl"] = "https://your-return-url.com?id=" + transactionId;
-await serviceClient.CreateStrexTransactionAsync(transaction);
-
-// TODO: Redirect end-user to one-click landing page
 ```
+// TODO: Redirect end-user to one-click landing page
+
+```CURL
+curl -XPUT -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
+    "TransactionId": "5402b85f-fac2-212a-8e55-a20ab8680765",
+    "ShortNumber": "2002",
+    "MerchantId": "YOUR_MERCHANT_ID",
+    "Price": 1,
+    "ServiceCode": "14002",
+    "InvoiceText": "Donation test",
+    "properties": {
+      "RedirectUrl": https://your-return-url.com?id=5402b85f-fac2-212a-8e55-a20ab8680765"
+    }
+}' 'https://test.target365.io/api/strex/transactions'
+```
+
 ### Setup subscription transaction
 This example sets up a subscription transaction for one-click. After creation you can redirect the end-user to the one-click landing page by redirecting to http://betal.strex.no/{YOUR-ACCOUNT-ID}/{YOUR-TRANSACTION-ID} for PROD and http://strex-test.target365.io/{YOUR-ACCOUNT-ID}/{YOUR-TRANSACTION-ID} for TEST-environment.
 ![subscription sequence](https://github.com/Target365/sdk-for-net/raw/master/oneclick-subscription-flow.png "Subscription sequence diagram")
-```C#
-var transaction = new StrexTransaction
-{
-    TransactionId = transactionId,
-    ShortNumber = "2002",
-    MerchantId = "YOUR_MERCHANT_ID",
-    Price = 1,
-    ServiceCode = ServiceCodes.NonCommercialDonation,
-    InvoiceText = "Donation test"
-};
 
-transaction.Properties["Recurring"] = true;
-transaction.Properties["RedirectUrl"] = "https://your-return-url.com?id=" + transactionId;
-await serviceClient.CreateStrexTransactionAsync(transaction);
+#### HTTP POST /api/strex/transactions
+```JSON
+{
+    "TransactionId": "5402b85f-fac2-212a-8e55-a20ab8680765",
+    "ShortNumber": "2002",
+    "MerchantId": "YOUR_MERCHANT_ID",
+    "Price": 1,
+    "ServiceCode": "14002",
+    "InvoiceText": "Donation test",
+    "properties": {
+      "Recurring": true,
+      "RedirectUrl": https://your-return-url.com?id=5402b85f-fac2-212a-8e55-a20ab8680765"
+    }
+}
+```
 
 // TODO: Redirect end-user to one-click landing page
+
+```CURL
+curl -XPUT -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
+    "TransactionId": "5402b85f-fac2-212a-8e55-a20ab8680765",
+    "ShortNumber": "2002",
+    "MerchantId": "YOUR_MERCHANT_ID",
+    "Price": 1,
+    "ServiceCode": "14002",
+    "InvoiceText": "Donation test",
+    "properties": {
+      "Recurring": true,
+      "RedirectUrl": https://your-return-url.com?id=5402b85f-fac2-212a-8e55-a20ab8680765"
+    }
+}' 'https://test.target365.io/api/strex/transactions'
 ```
+
 ### Recurring transaction
 This example sets up a recurring transaction for one-click. After creation you can immediately get the transaction to get the status code - the server will wait up to 20 seconds for the async transaction to complete.
 ![Recurring sequence](https://github.com/Target365/sdk-for-net/raw/master/oneclick-recurring-flow.png "Recurring sequence diagram")
-```C#
-var transaction = new StrexTransaction
+
+#### HTTP POST /api/strex/transactions
+```JSON
 {
-    TransactionId = transactionId,
-    Recipient = "RECIPIENT_FROM_SUBSCRIPTION_TRANSACTION"
-    ShortNumber = "2002",
-    MerchantId = "YOUR_MERCHANT_ID",
-    Price = 1,
-    ServiceCode = ServiceCodes.NonCommercialDonation,
-    InvoiceText = "Donation test"
+    "TransactionId": "5402b85f-fac2-212a-8e55-a20ab8680765",
+    "Recipient": "RECIPIENT_FROM_SUBSCRIPTION_TRANSACTION"
+    "ShortNumber": "2002",
+    "MerchantId": "YOUR_MERCHANT_ID",
+    "Price": 1,
+    "ServiceCode": "14002",
+    "InvoiceText": "Donation test"
 };
 
-await serviceClient.CreateStrexTransactionAsync(transaction);
-transaction = await serviceClient.GetStrexTransactionAsync(transactionId);
+```
+
+#### HTTP GET /api/strex/transactions/5402b85f-fac2-212a-8e55-a20ab8680765
+
+#### Response:
+```JSON
+{
+  "created": "2018-11-02T12:00:00Z",
+  "invoiceText": "Thank you for your donation",
+  "lastModified": "2018-11-02T12:00:00Z",
+  "merchantId": "mer_test",
+  "price": 10.5,
+  "recipient": "+4798079008",
+  "serviceCode": "14002",
+  "shortNumber": "2001",
+  "transactionId": "8502b85f-fac2-47cc-8e55-a20ab8680427",
+  "statusCode": "Ok",
+  "detailedStatusCode": "Delivered"
+}
+```
 
 // TODO: Check transaction.StatusCode
-```
 
 ## Lookup
 
