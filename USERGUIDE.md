@@ -59,7 +59,7 @@ The Target365 REST API gives you direct access to our online services like sendi
 This example sends an SMS to 98079008 (+47 for Norway) from "Target365" with the text "Hello world from SMS!".
 
 ```
-POST /api/out-messages
+POST https://test.target365.io/api/out-messages
 Content-Type: application/json
 
 {
@@ -87,8 +87,9 @@ curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
 ### Schedule an SMS for later sending
 This example sets up a scheduled SMS. Scheduled messages can be updated or deleted before the time of sending.
 
-#### HTTP POST /api/out-messages
-```JSON
+```
+HTTP POST https://test.target365.io/api/out-messages
+
 {
     "TransactionId": "8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3",
     "Sender": "Target365",
@@ -116,10 +117,14 @@ curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
 ### Edit a scheduled SMS
 This example shows how you can get a previously created scheduled SMS and post it again with a new sendtime and content.
 
-#### HTTP GET /api/out-messages/8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3
+```
+GET /api/out-messages/8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3
+```
 
-#### HTTP POST /api/out-messages
-```JSON
+```
+POST https://test.target365.io/api/out-messages
+Content-Type: application/json
+
 {
     "TransactionId": "8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3",
     "Sender": "Target365",
@@ -131,7 +136,10 @@ This example shows how you can get a previously created scheduled SMS and post i
 
 ### Delete a scheduled SMS
 This example deletes a previously created scheduled SMS.
-#### HTTP DELETE /api/out-messages/8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3
+
+```
+DELETE /api/out-messages/8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3
+```
 
 ```CURL
 curl -XDELETE -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" 'https://test.target365.io/api/out-messages/8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3'
@@ -149,8 +157,10 @@ If your service requires a minimum age of the End User, each payment transaction
 This example creates a 1 NOK Strex payment transaction that the end user will confirm by replying "OK" to an SMS from Strex.
 You can use message_prefix and message_suffix custom properties to influence the start and end of the SMS sent by Strex.
 
-#### HTTP POST /api/strex/transactions
-```JSON
+```
+POST https://test.target365.io/api/strex/transactions
+Content-Type: application/json
+
 {
     "TransactionId": "8502b85f-fac2-47cc-8e55-a20ab8680427",
     "ShortNumber": "2002",
@@ -192,8 +202,10 @@ curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
 ### Create a Strex payment transaction with one-time password
 This example creates a Strex one-time password sent to the end user and get completes the payment by using the one-time password. You can use MessagePrefix and MessageSuffix to influence the start and end of the SMS sent by Strex.
 
-#### HTTP POST /api/strex/one-time-passwords
-```JSON
+```
+POST https://test.target365.io/api/strex/one-time-passwords
+Content-Type: application/json
+
 {
     "TransactionId": "3202b85f-fac2-432a-8e55-a20ab8680211",
     "MerchantId": "YOUR_MERCHANT_ID",
@@ -222,8 +234,10 @@ curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
 
  Get input from end user (eg. via web site) and post payment transaction using same TransactionId as above.
 
-#### HTTP POST /api/strex/transactions
-```JSON
+```
+POST https://test.target365.io/api/strex/transactions
+Content-Type: application/json
+
 {
     "TransactionId": "3202b85f-fac2-432a-8e55-a20ab8680211",
     "ShortNumber": "2002",
@@ -257,7 +271,9 @@ curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
 ### Reverse a Strex payment transaction
 This example reverses a previously billed Strex payment transaction. The original transaction will not change, but a reversal transaction will be created that counters the previous transaction by a negative Price. The reversal is an asynchronous operation that usually takes a few seconds to finish.
 
-#### HTTP DELETE /api/strex/transactions/3202b85f-fac2-432a-8e55-a20ab8680211
+```
+DELETE /api/strex/transactions/3202b85f-fac2-432a-8e55-a20ab8680211
+```
 
 ```CURL
 curl -XDELETE -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" 'https://test.target365.io/api/strex/transactions/3202b85f-fac2-432a-8e55-a20ab8680211'
@@ -288,8 +304,10 @@ Please note:
 ### One-click config
 This example sets up a one-click config which makes it easier to handle campaigns in one-click where most properties like merchantId, price et cetera are known in advance. You can redirect the end-user to the one-click campaign page by redirecting to http://betal.strex.no/{YOUR-CONFIG-ID} for PROD and http://test-strex.target365.io/{YOUR-CONFIG-ID} for TEST-environment. You can also set the TransactionId by adding ?id={YOUR-TRANSACTION-ID} to the URL.
 
-#### HTTP PUT api/one-click/configs/Test1
-```JSON
+```
+PUT api/one-click/configs/Test1
+Content-Type: application/json
+
 {
     "ConfigId": "Test1",
     "ShortNumber": "2002",
@@ -349,8 +367,10 @@ If the MSISDN can't be determined automatically on the landing page the end user
 
 ![one-time sequence](https://github.com/Target365/sdk-for-net/raw/master/oneclick-simple-transaction-flow.png "One-time sequence diagram")
 
-#### HTTP POST /api/strex/transactions
-```JSON
+```
+POST https://test.target365.io/api/strex/transactions
+Content-Type: application/json
+
 {
     "TransactionId": "5402b85f-fac2-212a-8e55-a20ab8680765",
     "ShortNumber": "2002",
@@ -384,8 +404,10 @@ curl -XPUT -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
 This example sets up a subscription transaction for one-click. After creation you can redirect the end-user to the one-click landing page by redirecting to http://betal.strex.no/{YOUR-ACCOUNT-ID}/{YOUR-TRANSACTION-ID} for PROD and http://strex-test.target365.io/{YOUR-ACCOUNT-ID}/{YOUR-TRANSACTION-ID} for TEST-environment.
 ![subscription sequence](https://github.com/Target365/sdk-for-net/raw/master/oneclick-subscription-flow.png "Subscription sequence diagram")
 
-#### HTTP POST /api/strex/transactions
-```JSON
+```
+POST https://test.target365.io/api/strex/transactions
+Content-Type: application/json
+
 {
     "TransactionId": "5402b85f-fac2-212a-8e55-a20ab8680765",
     "ShortNumber": "2002",
@@ -421,8 +443,10 @@ curl -XPUT -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
 This example sets up a recurring transaction for one-click. After creation you can immediately get the transaction to get the status code - the server will wait up to 20 seconds for the async transaction to complete.
 ![Recurring sequence](https://github.com/Target365/sdk-for-net/raw/master/oneclick-recurring-flow.png "Recurring sequence diagram")
 
-#### HTTP POST /api/strex/transactions
-```JSON
+```
+POST https://test.target365.io/api/strex/transactions
+Content-Type: application/json
+
 {
     "TransactionId": "5402b85f-fac2-212a-8e55-a20ab8680765",
     "Recipient": "RECIPIENT_FROM_SUBSCRIPTION_TRANSACTION",
@@ -446,7 +470,9 @@ curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
     "InvoiceText": "Donation test"
 }' 'https://test.target365.io/api/strex/transactions'```
 
-#### HTTP GET /api/strex/transactions/5402b85f-fac2-212a-8e55-a20ab8680765
+```
+GET /api/strex/transactions/5402b85f-fac2-212a-8e55-a20ab8680765
+```
 
 ```CURL
 curl -XGET -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" 'https://test.target365.io/api/strex/transactions/5402b85f-fac2-212a-8e55-a20ab8680765'
@@ -476,7 +502,9 @@ curl -XGET -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" 'https
 ### Address lookup for mobile number
 This example looks up address information for the norwegian mobile number 98079008. Lookup information includes registered name and address.
 
-#### HTTP GET /api/lookup?msisdn=+4798079008
+```
+GET /api/lookup?msisdn=+4798079008
+```
 
 ```CURL
 curl -XGET -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" 'https://test.target365.io/api/lookup?msisdn=+4798079008'
@@ -510,8 +538,10 @@ curl -XGET -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" 'https
 ### Create a keyword
 This example creates a new keyword on short number 2002 that forwards incoming SMS messages to 2002 that starts with "HELLO" to the URL  "https://your-site.net/api/receive-sms".
 
-#### HTTP POST /api/keywords
-```JSON
+```
+POST https://test.target365.io/api/keywords
+Content-Type: application/json
+
 {
     "ShortNumberId": "NO-2002",
     "KeywordText": "HELLO",
@@ -540,7 +570,9 @@ curl -XGET -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
 ### Delete a keyword
 This example deletes a keyword.
 
-#### HTTP DELETE /api/keywords/{keywordId}
+```
+DELETE /api/keywords/{keywordId}
+```
 
 ```CURL
 curl -XDELETE -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" 'https://test.target365.io/api/keywords/{keywordId}'
