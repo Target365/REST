@@ -34,6 +34,11 @@
 
 ## Introduction
 The Target365 REST API gives you direct access to our online services like sending and receiving SMS, address lookup and Strex payment transactions. We encourage using our SDK's which provides an appropriate abstraction level for C# development and is officially support by Target365. The SDK's also implements very high security (ECDsaP256 HMAC) compared to the REST API secret key.
+* https://github.com/Target365/sdk-for-net
+* https://github.com/Target365/sdk-for-java
+* https://github.com/Target365/sdk-for-node
+* https://github.com/Target365/sdk-for-php
+* https://github.com/Target365/sdk-for-python
 
 ## Generate API key
 * Log in to your account at StrexConnect at https://www.strexconnect.no
