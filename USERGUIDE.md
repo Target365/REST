@@ -195,23 +195,23 @@ This example creates a Strex one-time password sent to the end user and get comp
 #### HTTP POST /api/strex/one-time-passwords
 ```JSON
 {
-    TransactionId = "3202b85f-fac2-432a-8e55-a20ab8680211",
-    MerchantId = "YOUR_MERCHANT_ID",
-    Recipient = "+4798079008",
-    MessagePrefix = "Dear customer...",
-    MessageSuffix = "Best Regards..."
-    Recurring = false
+    "TransactionId": "3202b85f-fac2-432a-8e55-a20ab8680211",
+    "MerchantId": "YOUR_MERCHANT_ID",
+    "Recipient": "+4798079008",
+    "MessagePrefix": "Dear customer...",
+    "MessageSuffix": "Best Regards..."
+    "Recurring": false
 }
 ```
 
 ```CURL
 curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
-    TransactionId = "3202b85f-fac2-432a-8e55-a20ab8680211",
-    MerchantId = "YOUR_MERCHANT_ID",
-    Recipient = "+4798079008",
-    MessagePrefix = "Dear customer...",
-    MessageSuffix = "Best Regards..."
-    Recurring = false
+    "TransactionId": "3202b85f-fac2-432a-8e55-a20ab8680211",
+    "MerchantId": "YOUR_MERCHANT_ID",
+    "Recipient": "+4798079008",
+    "MessagePrefix": "Dear customer...",
+    "MessageSuffix": "Best Regards...",
+    "Recurring": false,
 }' 'https://test.target365.io/api/strex/one-time-passwords'
 ```
 
