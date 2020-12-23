@@ -119,7 +119,7 @@ curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
 This example shows how you can get a previously created scheduled SMS and post it again with a new sendtime and content.
 
 ```
-GET /api/out-messages/8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3
+GET https://test.target365.io/api/out-messages/8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3
 ```
 
 ```
@@ -139,7 +139,7 @@ Content-Type: application/json
 This example deletes a previously created scheduled SMS.
 
 ```
-DELETE /api/out-messages/8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3
+DELETE https://test.target365.io/api/out-messages/8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3
 ```
 
 ```CURL
@@ -273,7 +273,7 @@ curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
 This example reverses a previously billed Strex payment transaction. The original transaction will not change, but a reversal transaction will be created that counters the previous transaction by a negative Price. The reversal is an asynchronous operation that usually takes a few seconds to finish.
 
 ```
-DELETE /api/strex/transactions/3202b85f-fac2-432a-8e55-a20ab8680211
+DELETE https://test.target365.io/api/strex/transactions/3202b85f-fac2-432a-8e55-a20ab8680211
 ```
 
 ```CURL
@@ -306,7 +306,7 @@ Please note:
 This example sets up a one-click config which makes it easier to handle campaigns in one-click where most properties like merchantId, price et cetera are known in advance. You can redirect the end-user to the one-click campaign page by redirecting to http://betal.strex.no/{YOUR-CONFIG-ID} for PROD and http://test-strex.target365.io/{YOUR-CONFIG-ID} for TEST-environment. You can also set the TransactionId by adding ?id={YOUR-TRANSACTION-ID} to the URL.
 
 ```
-PUT api/one-click/configs/Test1
+PUT https://test.target365.io/api/one-click/configs/Test1
 Content-Type: application/json
 
 {
@@ -472,7 +472,7 @@ curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
 }' 'https://test.target365.io/api/strex/transactions'```
 
 ```
-GET /api/strex/transactions/5402b85f-fac2-212a-8e55-a20ab8680765
+GET https://test.target365.io/api/strex/transactions/5402b85f-fac2-212a-8e55-a20ab8680765
 ```
 
 ```CURL
@@ -504,7 +504,7 @@ curl -XGET -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" 'https
 This example looks up address information for the norwegian mobile number 98079008. Lookup information includes registered name and address.
 
 ```
-GET /api/lookup?msisdn=+4798079008
+GET https://test.target365.io/api/lookup?msisdn=+4798079008
 ```
 
 ```CURL
@@ -572,7 +572,7 @@ curl -XGET -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
 This example deletes a keyword.
 
 ```
-DELETE /api/keywords/{keywordId}
+DELETE https://test.target365.io/api/keywords/{keywordId}
 ```
 
 ```CURL
