@@ -359,7 +359,7 @@ If the MSISDN can't be determined automatically on the landing page the end user
     "ServiceCode": "14002",
     "InvoiceText": "Donation test",
     "properties": {
-      "RedirectUrl": https://your-return-url.com?id=5402b85f-fac2-212a-8e55-a20ab8680765"
+      "RedirectUrl": "https://your-return-url.com?id=5402b85f-fac2-212a-8e55-a20ab8680765"
     }
 }
 
@@ -375,7 +375,7 @@ curl -XPUT -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
     "ServiceCode": "14002",
     "InvoiceText": "Donation test",
     "properties": {
-      "RedirectUrl": https://your-return-url.com?id=5402b85f-fac2-212a-8e55-a20ab8680765"
+      "RedirectUrl": "https://your-return-url.com?id=5402b85f-fac2-212a-8e55-a20ab8680765"
     }
 }' 'https://test.target365.io/api/strex/transactions'
 ```
@@ -395,7 +395,7 @@ This example sets up a subscription transaction for one-click. After creation yo
     "InvoiceText": "Donation test",
     "properties": {
       "Recurring": true,
-      "RedirectUrl": https://your-return-url.com?id=5402b85f-fac2-212a-8e55-a20ab8680765"
+      "RedirectUrl": "https://your-return-url.com?id=5402b85f-fac2-212a-8e55-a20ab8680765"
     }
 }
 ```
@@ -412,7 +412,7 @@ curl -XPUT -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
     "InvoiceText": "Donation test",
     "properties": {
       "Recurring": true,
-      "RedirectUrl": https://your-return-url.com?id=5402b85f-fac2-212a-8e55-a20ab8680765"
+      "RedirectUrl": "https://your-return-url.com?id=5402b85f-fac2-212a-8e55-a20ab8680765"
     }
 }' 'https://test.target365.io/api/strex/transactions'
 ```
@@ -425,7 +425,7 @@ This example sets up a recurring transaction for one-click. After creation you c
 ```JSON
 {
     "TransactionId": "5402b85f-fac2-212a-8e55-a20ab8680765",
-    "Recipient": "RECIPIENT_FROM_SUBSCRIPTION_TRANSACTION"
+    "Recipient": "RECIPIENT_FROM_SUBSCRIPTION_TRANSACTION",
     "ShortNumber": "2002",
     "MerchantId": "YOUR_MERCHANT_ID",
     "Price": 1,
