@@ -496,7 +496,8 @@ curl -XGET -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" 'https
   "gender": "M",
   "dateOfBirth": "2000-01-01",
   "age": 20
-}```
+}
+```
 
 #### Response codes
 * 200	Lookup performed successfully.
