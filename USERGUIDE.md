@@ -431,11 +431,26 @@ This example sets up a recurring transaction for one-click. After creation you c
     "Price": 1,
     "ServiceCode": "14002",
     "InvoiceText": "Donation test"
-};
+}
 
 ```
 
+```CURL
+curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
+    "TransactionId": "5402b85f-fac2-212a-8e55-a20ab8680765",
+    "Recipient": "RECIPIENT_FROM_SUBSCRIPTION_TRANSACTION",
+    "ShortNumber": "2002",
+    "MerchantId": "YOUR_MERCHANT_ID",
+    "Price": 1,
+    "ServiceCode": "14002",
+    "InvoiceText": "Donation test"
+}' 'https://test.target365.io/api/strex/transactions'```
+
 #### HTTP GET /api/strex/transactions/5402b85f-fac2-212a-8e55-a20ab8680765
+
+```CURL
+curl -XGET -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" 'https://test.target365.io/api/strex/transactions/5402b85f-fac2-212a-8e55-a20ab8680765'
+```
 
 #### Response:
 ```JSON
@@ -459,35 +474,80 @@ This example sets up a recurring transaction for one-click. After creation you c
 ## Lookup
 
 ### Address lookup for mobile number
-This example looks up address information for the mobile number 98079008. Lookup information includes registered name and address.
-```C#
-var lookup = await serviceClient.LookupAsync("+4798079008");
-var firstName = lookup.FirstName;
-var lastName = lookup.LastName;
+This example looks up address information for the norwegian mobile number 98079008. Lookup information includes registered name and address.
+
+#### HTTP GET /api/lookup?msisdn=+4798079008
+
+```CURL
+curl -XGET -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" 'https://test.target365.io/api/lookup?msisdn=+4798079008'
 ```
+
+#### Response
+```JSON
+{
+  "msisdn": "98079008",
+  "firstName": "Hans Olav",
+  "lastName": "Stjernholm",
+  "streetName": "Teststreet",
+  "streetNumber": "1",
+  "streetLetter": "a",
+  "zipCode": "1234",
+  "city": "Test City",
+  "gender": "M",
+  "dateOfBirth": "2000-01-01",
+  "age": 20
+}```
+
+#### Response codes
+* 200	Lookup performed successfully.
+* 400	Request had invalid payload.
+* 401	Request was unauthorized.
+* 404	Information on phone number not found.
 
 ## Keywords
 
 ### Create a keyword
 This example creates a new keyword on short number 2002 that forwards incoming SMS messages to 2002 that starts with "HELLO" to the URL  "https://your-site.net/api/receive-sms".
-```C#
-var keyword = new Keyword
-{
-    ShortNumberId = "NO-2002",
-    KeywordText = "HELLO",
-    Mode = KeywordModes.Text,
-    ForwardUrl = "https://your-site.net/api/receive-sms",
-    Enabled = true
-};
 
-var keywordId = await serviceClient.CreateKeywordAsync(keyword);
+#### HTTP POST /api/keywords
+```JSON
+{
+    "ShortNumberId": "NO-2002",
+    "KeywordText": "HELLO",
+    "Mode": "Text",
+    "ForwardUrl": "https://your-site.net/api/receive-sms",
+    "Enabled": true
+}
+
 ```
+
+```CURL
+curl -XGET -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
+    "ShortNumberId": "NO-2002",
+    "KeywordText": "HELLO",
+    "Mode": "Text",
+    "ForwardUrl": "https://your-site.net/api/receive-sms",
+    "Enabled": true
+}' 'https://test.target365.io/api/keywords'
+```
+
+#### Response codes
+* 201	Keyword created. Location HTTP-header will contain resource uri.
+* 400	Request had invalid payload.
+* 401	Request was unauthorized.
 
 ### Delete a keyword
 This example deletes a keyword.
-```C#
-await serviceClient.DeleteKeywordAsync(keywordId);
+
+#### HTTP DELETE /api/keywords/{keywordId}
+
+```CURL
+curl -XDELETE -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" 'https://test.target365.io/api/keywords/{keywordId}'
 ```
+
+#### Response codes
+* 204	Keyword deleted.
+* 404	Keyword not found.
 
 ## Forwards
 
@@ -513,22 +573,6 @@ Host: your-site.net
 HTTP/1.1 200 OK
 Date: Thu, 07 Feb 2019 21:13:51 GMT
 Content-Length: 0
-```
-
-### SMS forward using the SDK
-This example shows how to parse an SMS forward request using the SDK.
-```C#
-[Route("api/receive-sms")]
-public async Task<HttpResponseMessage> PostInMessage(HttpRequestMessage request)
-{
-    var settings = new JsonSerializerSettings
-    {
-    	Converters = new List<JsonConverter> { new StringEnumConverter { CamelCaseText = false } },
-    };
-    
-    var message = JsonConvert.DeserializeObject<InMessage>(await request.Content.ReadAsStringAsync(), settings);
-    return request.CreateResponse(HttpStatusCode.OK);
-}
 ```
 
 ### DLR forward
@@ -562,21 +606,6 @@ Date: Thu, 07 Feb 2019 21:13:51 GMT
 Content-Length: 0
 ```
 
-### DLR forward using the SDK
-This example shows how to parse an DLR forward request using the SDK.
-```C#
-[Route("api/receive-dlr")]
-public async Task<HttpResponseMessage> PostDeliveryReport(HttpRequestMessage request)
-{
-    var settings = new JsonSerializerSettings
-    {
-    	Converters = new List<JsonConverter> { new StringEnumConverter { CamelCaseText = false } },
-    };
-    
-    var message = JsonConvert.DeserializeObject<DeliveryReport>(await request.Content.ReadAsStringAsync(), settings);
-    return request.CreateResponse(HttpStatusCode.OK);
-}
-```
 ### DLR status codes
 Delivery reports contains two status codes, one overall called `StatusCode` and one detailed called `DetailedStatusCode`.
 
