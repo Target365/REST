@@ -27,9 +27,7 @@
     * [Delete a keyword](#delete-a-keyword)
 * [Forwards](#forwards)
     * [SMS forward](#sms-forward)
-    * [SMS forward using the SDK](#sms-forward-using-the-sdk)
     * [DLR forward](#dlr-forward)
-    * [DLR forward using the SDK](#dlr-forward-using-the-sdk)
     * [DLR status codes](#dlr-status-codes)
 
 ## Introduction
@@ -60,8 +58,10 @@ The Target365 REST API gives you direct access to our online services like sendi
 ### Send an SMS
 This example sends an SMS to 98079008 (+47 for Norway) from "Target365" with the text "Hello world from SMS!".
 
-#### HTTP POST /api/out-messages
-```JSON
+```
+POST /api/out-messages
+Content-Type: application/json
+
 {
     "TransactionId": "8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3",
     "Sender": "Target365",
