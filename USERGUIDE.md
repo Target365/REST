@@ -120,12 +120,10 @@ curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
 ### Edit a scheduled SMS
 This example shows how you can get a previously created scheduled SMS and post it again with a new sendtime and content.
 
-#### Request
+#### Requests
 ```
 GET https://test.target365.io/api/out-messages/8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3
 ```
-
-#### Request
 ```
 POST https://test.target365.io/api/out-messages
 Content-Type: application/json
