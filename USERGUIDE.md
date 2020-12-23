@@ -299,13 +299,15 @@ This example sets up a one-click config which makes it easier to handle campaign
     "OnlineText": "Buy directly",
     "OfflineText": "Buy with PIN-code",
     "InvoiceText": "Donation test",
-    "RedirectUrl": "https://your-return-url.com?id={TransactionId}", // {TransactionId} is replaced by actual transaction id
+    "RedirectUrl": "https://your-return-url.com?id={TransactionId}",
     "Recurring": true,
     "SubscriptionInterval": "monthly",
     "SubscriptionPrice": 99,
     "SubscriptionStartSms": "Thanks for donating 99kr each month."
 }
 ```
+
+{TransactionId} in RedirectUrl is replaced by actual transaction id.
 
 If Recurring is set to 'false', the following parameters are optional:
 
