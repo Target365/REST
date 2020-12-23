@@ -60,7 +60,7 @@ The Target365 REST API gives you direct access to our online services like sendi
 ### Send an SMS
 This example sends an SMS to 98079008 (+47 for Norway) from "Target365" with the text "Hello world from SMS!".
 
-HTTP POST /api/out-messages
+#### HTTP POST /api/out-messages
 ```JSON
 {
     "TransactionId": "8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3",
@@ -87,7 +87,7 @@ curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
 ### Schedule an SMS for later sending
 This example sets up a scheduled SMS. Scheduled messages can be updated or deleted before the time of sending.
 
-HTTP POST /api/out-messages
+#### HTTP POST /api/out-messages
 ```JSON
 {
     "TransactionId": "8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3",
@@ -116,9 +116,9 @@ curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
 ### Edit a scheduled SMS
 This example shows how you can get a previously created scheduled SMS and post it again with a new sendtime and content.
 
-HTTP GET /api/out-messages/8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3
+#### HTTP GET /api/out-messages/8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3
 
-HTTP POST /api/out-messages
+#### HTTP POST /api/out-messages
 ```JSON
 {
     "TransactionId": "8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3",
@@ -131,7 +131,7 @@ HTTP POST /api/out-messages
 
 ### Delete a scheduled SMS
 This example deletes a previously created scheduled SMS.
-HTTP DELETE /api/out-messages/8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3
+#### HTTP DELETE /api/out-messages/8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3
 
 ```CURL
 curl -XDELETE -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" 'https://test.target365.io/api/out-messages/8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3'
@@ -149,7 +149,7 @@ If your service requires a minimum age of the End User, each payment transaction
 This example creates a 1 NOK Strex payment transaction that the end user will confirm by replying "OK" to an SMS from Strex.
 You can use message_prefix and message_suffix custom properties to influence the start and end of the SMS sent by Strex.
 
-HTTP POST /api/strex/transactions
+#### HTTP POST /api/strex/transactions
 ```JSON
 {
     "TransactionId": "8502b85f-fac2-47cc-8e55-a20ab8680427",
@@ -162,7 +162,7 @@ HTTP POST /api/strex/transactions
     "SmsConfirmation": true,
     "properties": {
       "message_prefix": "Dear customer...",
-      "message_suffix": Best regards..."
+      "message_suffix": "Best regards..."
     }
 }
 ```
@@ -179,7 +179,7 @@ curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
     "SmsConfirmation": true,
     "properties": {
       "message_prefix": "Dear customer...",
-      "message_suffix": Best regards..."
+      "message_suffix": "Best regards..."
     }
 }' 'https://test.target365.io/api/strex/transactions'
 ```
@@ -192,7 +192,7 @@ curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
 ### Create a Strex payment transaction with one-time password
 This example creates a Strex one-time password sent to the end user and get completes the payment by using the one-time password. You can use MessagePrefix and MessageSuffix to influence the start and end of the SMS sent by Strex.
 
-HTTP POST /api/strex/one-time-passwords
+#### HTTP POST /api/strex/one-time-passwords
 ```JSON
 {
     TransactionId = "3202b85f-fac2-432a-8e55-a20ab8680211",
@@ -222,7 +222,7 @@ curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
 
  Get input from end user (eg. via web site) and post payment transaction using same TransactionId as above.
 
-HTTP POST /api/strex/transactions
+#### HTTP POST /api/strex/transactions
 ```JSON
 {
     "TransactionId": "3202b85f-fac2-432a-8e55-a20ab8680211",
@@ -257,7 +257,7 @@ curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
 ### Reverse a Strex payment transaction
 This example reverses a previously billed Strex payment transaction. The original transaction will not change, but a reversal transaction will be created that counters the previous transaction by a negative Price. The reversal is an asynchronous operation that usually takes a few seconds to finish.
 
-HTTP DELETE /api/strex/transactions/3202b85f-fac2-432a-8e55-a20ab8680211
+#### HTTP DELETE /api/strex/transactions/3202b85f-fac2-432a-8e55-a20ab8680211
 
 ```CURL
 curl -XDELETE -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" 'https://test.target365.io/api/strex/transactions/3202b85f-fac2-432a-8e55-a20ab8680211'
@@ -288,7 +288,7 @@ Please note:
 ### One-click config
 This example sets up a one-click config which makes it easier to handle campaigns in one-click where most properties like merchantId, price et cetera are known in advance. You can redirect the end-user to the one-click campaign page by redirecting to http://betal.strex.no/{YOUR-CONFIG-ID} for PROD and http://test-strex.target365.io/{YOUR-CONFIG-ID} for TEST-environment. You can also set the TransactionId by adding ?id={YOUR-TRANSACTION-ID} to the URL.
 
-HTTP PUT api/one-click/configs/Test1
+#### HTTP PUT api/one-click/configs/Test1
 ```JSON
 {
     "ConfigId": "Test1",
