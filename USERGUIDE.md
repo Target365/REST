@@ -287,7 +287,7 @@ DELETE https://test.target365.io/api/strex/transactions/3202b85f-fac2-432a-8e55-
 curl -XDELETE -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" 'https://test.target365.io/api/strex/transactions/3202b85f-fac2-432a-8e55-a20ab8680211'
 ```
 
-#### Response:
+#### Response
 ```JSON
 {
     "TransactionId": "-3202b85f-fac2-432a-8e55-a20ab8680211"
@@ -454,7 +454,7 @@ curl -XPUT -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
 This example sets up a recurring transaction for one-click. After creation you can immediately get the transaction to get the status code - the server will wait up to 20 seconds for the async transaction to complete.
 ![Recurring sequence](https://github.com/Target365/sdk-for-net/raw/master/oneclick-recurring-flow.png "Recurring sequence diagram")
 
-#### Request
+#### Requests
 ```
 POST https://test.target365.io/api/strex/transactions
 Content-Type: application/json
@@ -470,6 +470,9 @@ Content-Type: application/json
 }
 
 ```
+```
+GET https://test.target365.io/api/strex/transactions/5402b85f-fac2-212a-8e55-a20ab8680765
+```
 
 ```
 curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
@@ -482,17 +485,11 @@ curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
     "InvoiceText": "Donation test"
 }' 'https://test.target365.io/api/strex/transactions'```
 ```
-
-#### Request
-```
-GET https://test.target365.io/api/strex/transactions/5402b85f-fac2-212a-8e55-a20ab8680765
-```
-
 ```
 curl -XGET -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" 'https://test.target365.io/api/strex/transactions/5402b85f-fac2-212a-8e55-a20ab8680765'
 ```
 
-#### Response:
+#### Response
 ```JSON
 {
   "created": "2018-11-02T12:00:00Z",
