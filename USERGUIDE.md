@@ -60,7 +60,7 @@ The Target365 REST API gives you direct access to our online services like sendi
 ### Send an SMS
 This example sends an SMS to 98079008 (+47 for Norway) from "Target365" with the text "Hello world from SMS!".
 
-POST /api/out-messages
+HTTP POST /api/out-messages
 ```JSON
 {
     "TransactionId": "8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3",
@@ -79,99 +79,201 @@ curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
 }' 'https://test.target365.io/api/out-messages'
 ```
 
+#### Response codes
+* 201	Out-message posted successfully. Location HTTP-header will contain resource uri.
+* 400	Request had invalid payload.
+* 401	Request was unauthorized.
+
 ### Schedule an SMS for later sending
 This example sets up a scheduled SMS. Scheduled messages can be updated or deleted before the time of sending.
-```JSON
-var outMessage = new OutMessage
-{
-    TransactionId = Guid.NewGuid().ToString(),
-    Sender = "Target365",
-    Recipient = "+4798079008",
-    Content = "Hello World from SMS!",
-    SendTime = DateTimeOffset.UtcNow.AddHours(2),
-};
 
-await serviceClient.CreateOutMessageAsync(outMessage);
+HTTP POST /api/out-messages
+```JSON
+{
+    "TransactionId": "8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3",
+    "Sender": "Target365",
+    "Recipient": "+4798079008",
+    "Content": "Hello World from SMS!",
+    "SendTime" : "2021-04-12T13:27:50Z"
+}
 ```
 
+```CURL
+curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
+    "TransactionId": "8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3",
+    "Sender": "Target365",
+    "Recipient": "+4798079008",
+    "Content": "Hello World from SMS!",
+    "SendTime" : "2021-04-12T13:27:50Z"
+}' 'https://test.target365.io/api/out-messages'
+```
+
+#### Response codes
+* 201	Out-message posted successfully. Location HTTP-header will contain resource uri.
+* 400	Request had invalid payload.
+* 401	Request was unauthorized.
+
 ### Edit a scheduled SMS
-This example updates a previously created scheduled SMS.
-```C#
-var outMessage = await serviceClient.GetOutMessageAsync(transactionId);
-outMessage.SendTime = outMessage.SendTime.AddHours(1);
-outMessage.Content += " An hour later! :)";
-await serviceClient.UpdateOutMessageAsync(outMessage);
+This example shows how you can get a previously created scheduled SMS and post it again with a new sendtime and content.
+
+HTTP GET /api/out-messages/8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3
+
+HTTP POST /api/out-messages
+```JSON
+{
+    "TransactionId": "8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3",
+    "Sender": "Target365",
+    "Recipient": "+4798079008",
+    "Content": "Hello World from SMS an hour later!",
+    "SendTime" : "2021-04-14T13:27:50Z"
+}
 ```
 
 ### Delete a scheduled SMS
 This example deletes a previously created scheduled SMS.
-```C#
-await serviceClient.DeleteOutMessageAsync(transactionId);
+HTTP DELETE /api/out-messages/8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3
+
+```CURL
+curl -XDELETE -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" 'https://test.target365.io/api/out-messages/8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3'
 ```
+
+#### Response codes
+* 204	Out-message deleted successfully.
+* 404	Out-message not found.
+* 409	Out-message could not be deleted.
+
 ## Payment transactions
 If your service requires a minimum age of the End User, each payment transaction should be defined with minimum age. Both StrexTransaction and OutMessage have a property named “Age”. If not set or present in the request, there is no age limit.
 
 ### Create a Strex payment transaction
 This example creates a 1 NOK Strex payment transaction that the end user will confirm by replying "OK" to an SMS from Strex.
 You can use message_prefix and message_suffix custom properties to influence the start and end of the SMS sent by Strex.
-```C#
-var transaction = new StrexTransaction
+
+HTTP POST /api/strex/transactions
+```JSON
 {
-    TransactionId = Guid.NewGuid().ToString(),
-    ShortNumber = "2002",
-    Recipient = "+4798079008",
-    MerchantId = "YOUR_MERCHANT_ID",
-    Price = 1,
-    ServiceCode = ServiceCodes.NonCommercialDonation,
-    InvoiceText = "Donation test",
-    SmsConfirmation = true,
-};
-
-transaction.Properties["message_prefix"] = "Dear customer...";
-transaction.Properties["message_suffix"] = "Best regards...";
-
-await serviceClient.CreateStrexTransactionAsync(transaction);
+    "TransactionId": "8502b85f-fac2-47cc-8e55-a20ab8680427",
+    "ShortNumber": "2002",
+    "Recipient": "+4798079008",
+    "MerchantId" : "YOUR_MERCHANT_ID",
+    "Price": 1,
+    "ServiceCode": "ServiceCodes.NonCommercialDonation",
+    "InvoiceText": "Donation test",
+    "SmsConfirmation": true,
+    "properties": {
+      "message_prefix": "Dear customer...",
+      "message_suffix": Best regards..."
+    }
+}
 ```
+
+```CURL
+curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
+    "TransactionId": "8502b85f-fac2-47cc-8e55-a20ab8680427",
+    "ShortNumber": "2002",
+    "Recipient": "+4798079008",
+    "MerchantId" : "YOUR_MERCHANT_ID",
+    "Price": 1,
+    "ServiceCode": "14002",
+    "InvoiceText": "Donation test",
+    "SmsConfirmation": true,
+    "properties": {
+      "message_prefix": "Dear customer...",
+      "message_suffix": Best regards..."
+    }
+}' 'https://test.target365.io/api/strex/transactions'
+```
+
+#### Response codes
+* 201	Transaction posted successfully. Location HTTP-header will contain resource uri.
+* 400	Request had invalid payload.
+* 401	Request was unauthorized.
 
 ### Create a Strex payment transaction with one-time password
 This example creates a Strex one-time password sent to the end user and get completes the payment by using the one-time password. You can use MessagePrefix and MessageSuffix to influence the start and end of the SMS sent by Strex.
-```C#
-transactionId = Guid.NewGuid().ToString();
 
-var oneTimePassword = new OneTimePassword
+HTTP POST /api/strex/one-time-passwords
+```JSON
 {
-    TransactionId = transactionId,
+    TransactionId = "3202b85f-fac2-432a-8e55-a20ab8680211",
     MerchantId = "YOUR_MERCHANT_ID",
     Recipient = "+4798079008",
     MessagePrefix = "Dear customer...",
     MessageSuffix = "Best Regards..."
     Recurring = false
-};
-
-await serviceClient.CreateOneTimePasswordAsync(oneTimePassword);
-
-// *** Get input from end user (eg. via web site) ***
-
-var transaction = new StrexTransaction
-{
-    TransactionId = transactionId,
-    ShortNumber = "2002",
-    Recipient = "+4798079008",
-    MerchantId = "YOUR_MERCHANT_ID",
-    Price = 1,
-    ServiceCode = ServiceCodes.NonCommercialDonation,
-    InvoiceText = "Donation test",
-    OneTimePassword = "ONE_TIME_PASSWORD_FROM_USER"
-};
-
-await serviceClient.CreateStrexTransactionAsync(transaction);
+}
 ```
+
+```CURL
+curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
+    TransactionId = "3202b85f-fac2-432a-8e55-a20ab8680211",
+    MerchantId = "YOUR_MERCHANT_ID",
+    Recipient = "+4798079008",
+    MessagePrefix = "Dear customer...",
+    MessageSuffix = "Best Regards..."
+    Recurring = false
+}' 'https://test.target365.io/api/strex/one-time-passwords'
+```
+
+#### Response codes
+* 201	Posted successfully. Location HTTP-header will contain resource uri.
+* 400	Request had invalid payload.
+* 401	Request was unauthorized.
+
+ Get input from end user (eg. via web site) and post payment transaction using same TransactionId as above.
+
+HTTP POST /api/strex/transactions
+```JSON
+{
+    "TransactionId": "3202b85f-fac2-432a-8e55-a20ab8680211",
+    "ShortNumber": "2002",
+    "Recipient": "+4798079008",
+    "MerchantId: "YOUR_MERCHANT_ID",
+    "Price": 1,
+    "ServiceCode": "14002",
+    "InvoiceText": "Donation test",
+    "OneTimePassword": "ONE_TIME_PASSWORD_FROM_USER"
+}
+```
+
+```CURL
+curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
+    "TransactionId": "3202b85f-fac2-432a-8e55-a20ab8680211",
+    "ShortNumber": "2002",
+    "Recipient": "+4798079008",
+    "MerchantId: "YOUR_MERCHANT_ID",
+    "Price": 1,
+    "ServiceCode": "14002",
+    "InvoiceText": "Donation test",
+    "OneTimePassword": "ONE_TIME_PASSWORD_FROM_USER"
+}' 'https://test.target365.io/api/strex/transactions'
+```
+
+#### Response codes
+* 201	Transaction posted successfully. Location HTTP-header will contain resource uri.
+* 400	Request had invalid payload.
+* 401	Request was unauthorized.
 
 ### Reverse a Strex payment transaction
 This example reverses a previously billed Strex payment transaction. The original transaction will not change, but a reversal transaction will be created that counters the previous transaction by a negative Price. The reversal is an asynchronous operation that usually takes a few seconds to finish.
-```C#
-var reversalTransactionId = await serviceClient.ReverseStrexTransactionAsync(transactionId);
+
+HTTP DELETE /api/strex/transactions/3202b85f-fac2-432a-8e55-a20ab8680211
+
+```CURL
+curl -XDELETE -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" 'https://test.target365.io/api/strex/transactions/3202b85f-fac2-432a-8e55-a20ab8680211'
 ```
+
+Response:
+```JSON
+{
+    "TransactionId": "-3202b85f-fac2-432a-8e55-a20ab8680211"
+}
+```
+#### Response codes
+* 201	Strex transaction reversal has been registered and is processed asynchronously. Transaction id of the reversal transaction will be the same as the original transaction id prefixed with '-'.
+* 401	Request was unauthorized.
+* 404	Strex transaction not found.
+* 409	Strex transaction is not reversable.
 
 ## One-click
 
@@ -186,25 +288,23 @@ Please note:
 ### One-click config
 This example sets up a one-click config which makes it easier to handle campaigns in one-click where most properties like merchantId, price et cetera are known in advance. You can redirect the end-user to the one-click campaign page by redirecting to http://betal.strex.no/{YOUR-CONFIG-ID} for PROD and http://test-strex.target365.io/{YOUR-CONFIG-ID} for TEST-environment. You can also set the TransactionId by adding ?id={YOUR-TRANSACTION-ID} to the URL.
 
-```C#
-var config = new OneClickConfig
+HTTP PUT api/one-click/configs/Test1
+```JSON
 {
-    ConfigId = "Test1",
-    ShortNumber = "2002",
-    Price = 99,
-    MerchantId = "YOUR_MERCHANT_ID",
-    ServiceCode = ServiceCodes.NonCommercialDonation,
-    OnlineText = "Buy directly",
-    OfflineText = "Buy with PIN-code",
-    InvoiceText = "Donation test",
-    RedirectUrl = "https://your-return-url.com?id={TransactionId}", // {TransactionId} is replaced by actual transaction id
-    Recurring = true,
-    SubscriptionInterval = "monthly",
-    SubscriptionPrice = 99,
-    SubscriptionStartSms = "Thanks for donating 99kr each month."
-};
-
-await serviceClient.SaveOneClickConfigAsync(config);
+    "ConfigId": "Test1",
+    "ShortNumber": "2002",
+    "Price": 99,
+    "MerchantId": "YOUR_MERCHANT_ID",
+    "ServiceCode": "14002",
+    "OnlineText": "Buy directly",
+    "OfflineText": "Buy with PIN-code",
+    "InvoiceText: "Donation test",
+    "RedirectUrl": "https://your-return-url.com?id={TransactionId}", // {TransactionId} is replaced by actual transaction id
+    "Recurring": true,
+    "SubscriptionInterval": "monthly",
+    "SubscriptionPrice": 99,
+    "SubscriptionStartSms": "Thanks for donating 99kr each month."
+}
 ```
 
 If Recurring is set to 'false', the following parameters are optional:
@@ -217,6 +317,28 @@ This parameter is optional:
 
 * SubscriptionStartSms - SMS that will be sent to the user when subscription starts.
 
+```CURL
+curl -XPUT -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
+    "ConfigId": "Test1",
+    "ShortNumber": "2002",
+    "Price": 99,
+    "MerchantId": "YOUR_MERCHANT_ID",
+    "ServiceCode": "14002",
+    "OnlineText": "Buy directly",
+    "OfflineText": "Buy with PIN-code",
+    "InvoiceText: "Donation test",
+    "RedirectUrl": "https://your-return-url.com?id={TransactionId}", // {TransactionId} is replaced by actual transaction id
+    "Recurring": true,
+    "SubscriptionInterval": "monthly",
+    "SubscriptionPrice": 99,
+    "SubscriptionStartSms": "Thanks for donating 99kr each month."
+}' 'https://test.target365.io/api/one-click/configs/Test1'
+```
+
+#### Response codes
+* 201	Config posted successfully. Location HTTP-header will contain resource uri.
+* 400	Request had invalid payload.
+* 401	Request was unauthorized.
 
 ### One-time transaction
 This example sets up a simple one-time transaction for one-click without the use of config. After creation you can redirect the end-user to the one-click landing page by redirecting to http://betal.strex.no/{YOUR-ACCOUNT-ID}/{YOUR-TRANSACTION-ID} for PROD and http://test-strex.target365.io/{YOUR-ACCOUNT-ID}/{YOUR-TRANSACTION-ID} for TEST-environment.
