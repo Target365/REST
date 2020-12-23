@@ -70,7 +70,7 @@ Content-Type: application/json
 }
 ```
 
-```CURL
+```
 curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
     "TransactionId": "8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3",
     "Sender": "Target365",
@@ -100,7 +100,7 @@ Content-Type: application/json
 }
 ```
 
-```CURL
+```
 curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
     "TransactionId": "8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3",
     "Sender": "Target365",
@@ -142,7 +142,7 @@ This example deletes a previously created scheduled SMS.
 DELETE https://test.target365.io/api/out-messages/8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3
 ```
 
-```CURL
+```
 curl -XDELETE -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" 'https://test.target365.io/api/out-messages/8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3'
 ```
 
@@ -178,7 +178,7 @@ Content-Type: application/json
 }
 ```
 
-```CURL
+```
 curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
     "TransactionId": "8502b85f-fac2-47cc-8e55-a20ab8680427",
     "ShortNumber": "2002",
@@ -217,7 +217,7 @@ Content-Type: application/json
 }
 ```
 
-```CURL
+```
 curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
     "TransactionId": "3202b85f-fac2-432a-8e55-a20ab8680211",
     "MerchantId": "YOUR_MERCHANT_ID",
@@ -251,7 +251,7 @@ Content-Type: application/json
 }
 ```
 
-```CURL
+```
 curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
     "TransactionId": "3202b85f-fac2-432a-8e55-a20ab8680211",
     "ShortNumber": "2002",
@@ -276,7 +276,7 @@ This example reverses a previously billed Strex payment transaction. The origina
 DELETE https://test.target365.io/api/strex/transactions/3202b85f-fac2-432a-8e55-a20ab8680211
 ```
 
-```CURL
+```
 curl -XDELETE -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" 'https://test.target365.io/api/strex/transactions/3202b85f-fac2-432a-8e55-a20ab8680211'
 ```
 
@@ -338,7 +338,7 @@ This parameter is optional:
 
 * SubscriptionStartSms - SMS that will be sent to the user when subscription starts.
 
-```CURL
+```
 curl -XPUT -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
     "ConfigId": "Test1",
     "ShortNumber": "2002",
@@ -387,7 +387,7 @@ Content-Type: application/json
 ```
 // TODO: Redirect end-user to one-click landing page
 
-```CURL
+```
 curl -XPUT -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
     "TransactionId": "5402b85f-fac2-212a-8e55-a20ab8680765",
     "ShortNumber": "2002",
@@ -425,7 +425,7 @@ Content-Type: application/json
 
 // TODO: Redirect end-user to one-click landing page
 
-```CURL
+```
 curl -XPUT -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
     "TransactionId": "5402b85f-fac2-212a-8e55-a20ab8680765",
     "ShortNumber": "2002",
@@ -460,7 +460,7 @@ Content-Type: application/json
 
 ```
 
-```CURL
+```
 curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
     "TransactionId": "5402b85f-fac2-212a-8e55-a20ab8680765",
     "Recipient": "RECIPIENT_FROM_SUBSCRIPTION_TRANSACTION",
@@ -470,12 +470,13 @@ curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
     "ServiceCode": "14002",
     "InvoiceText": "Donation test"
 }' 'https://test.target365.io/api/strex/transactions'```
+```
 
 ```
 GET https://test.target365.io/api/strex/transactions/5402b85f-fac2-212a-8e55-a20ab8680765
 ```
 
-```CURL
+```
 curl -XGET -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" 'https://test.target365.io/api/strex/transactions/5402b85f-fac2-212a-8e55-a20ab8680765'
 ```
 
@@ -507,7 +508,7 @@ This example looks up address information for the norwegian mobile number 980790
 GET https://test.target365.io/api/lookup?msisdn=+4798079008
 ```
 
-```CURL
+```
 curl -XGET -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" 'https://test.target365.io/api/lookup?msisdn=+4798079008'
 ```
 
@@ -553,7 +554,7 @@ Content-Type: application/json
 
 ```
 
-```CURL
+```
 curl -XGET -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
     "ShortNumberId": "NO-2002",
     "KeywordText": "HELLO",
@@ -575,7 +576,7 @@ This example deletes a keyword.
 DELETE https://test.target365.io/api/keywords/{keywordId}
 ```
 
-```CURL
+```
 curl -XDELETE -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" 'https://test.target365.io/api/keywords/{keywordId}'
 ```
 
