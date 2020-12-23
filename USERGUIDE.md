@@ -199,7 +199,7 @@ This example creates a Strex one-time password sent to the end user and get comp
     "MerchantId": "YOUR_MERCHANT_ID",
     "Recipient": "+4798079008",
     "MessagePrefix": "Dear customer...",
-    "MessageSuffix": "Best Regards..."
+    "MessageSuffix": "Best Regards...",
     "Recurring": false
 }
 ```
@@ -228,7 +228,7 @@ curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
     "TransactionId": "3202b85f-fac2-432a-8e55-a20ab8680211",
     "ShortNumber": "2002",
     "Recipient": "+4798079008",
-    "MerchantId: "YOUR_MERCHANT_ID",
+    "MerchantId": "YOUR_MERCHANT_ID",
     "Price": 1,
     "ServiceCode": "14002",
     "InvoiceText": "Donation test",
@@ -298,7 +298,7 @@ This example sets up a one-click config which makes it easier to handle campaign
     "ServiceCode": "14002",
     "OnlineText": "Buy directly",
     "OfflineText": "Buy with PIN-code",
-    "InvoiceText: "Donation test",
+    "InvoiceText": "Donation test",
     "RedirectUrl": "https://your-return-url.com?id={TransactionId}", // {TransactionId} is replaced by actual transaction id
     "Recurring": true,
     "SubscriptionInterval": "monthly",
