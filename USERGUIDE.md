@@ -88,7 +88,7 @@ curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
 This example sets up a scheduled SMS. Scheduled messages can be updated or deleted before the time of sending.
 
 ```
-HTTP POST https://test.target365.io/api/out-messages
+POST https://test.target365.io/api/out-messages
 Content-Type: application/json
 
 {
