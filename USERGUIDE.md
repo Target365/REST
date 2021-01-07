@@ -70,6 +70,8 @@ Content-Type: application/json
     "Content": "Hello World from SMS!"
 }
 ```
+<details>
+   <summary>curl example</summary>
 
 ```
 curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
@@ -78,6 +80,14 @@ curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
     "Recipient": "+4798079008",
     "Content": "Hello World from SMS!"
 }' 'https://test.target365.io/api/out-messages'
+```
+</details>
+
+#### Response
+```
+201 Created
+Location: https://test.target365.io/api/out-messages/8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3
+
 ```
 
 #### Response codes
