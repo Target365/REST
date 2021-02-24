@@ -109,6 +109,8 @@ Content-Type: application/json
     "SendTime" : "2021-04-12T13:27:50Z"
 }
 ```
+<details>
+   <summary>curl example</summary>
 
 ```
 curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
@@ -118,6 +120,14 @@ curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
     "Content": "Hello World from SMS!",
     "SendTime" : "2021-04-12T13:27:50Z"
 }' 'https://test.target365.io/api/out-messages'
+```
+</details>
+
+#### Response
+```
+201 Created
+Location: https://test.target365.io/api/out-messages/8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3
+
 ```
 
 #### Response codes
@@ -152,9 +162,18 @@ This example deletes a previously created scheduled SMS.
 ```
 DELETE https://test.target365.io/api/out-messages/8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3
 ```
+<details>
+   <summary>curl example</summary>
 
 ```
 curl -XDELETE -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" 'https://test.target365.io/api/out-messages/8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3'
+```
+</details>
+
+#### Response
+```
+200 Ok
+
 ```
 
 #### Response codes
@@ -189,6 +208,8 @@ Content-Type: application/json
     }
 }
 ```
+<details>
+   <summary>curl example</summary>
 
 ```
 curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
@@ -205,6 +226,14 @@ curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
       "message_suffix": "Best regards..."
     }
 }' 'https://test.target365.io/api/strex/transactions'
+```
+</details>
+
+#### Response
+```
+201 Created
+Location: https://test.target365.io/api/strex/transactions/8502b85f-fac2-47cc-8e55-a20ab8680427
+
 ```
 
 #### Response codes
@@ -229,6 +258,8 @@ Content-Type: application/json
     "Recurring": false
 }
 ```
+<details>
+   <summary>curl example</summary>
 
 ```
 curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
@@ -239,6 +270,14 @@ curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
     "MessageSuffix": "Best Regards...",
     "Recurring": false,
 }' 'https://test.target365.io/api/strex/one-time-passwords'
+```
+</details>
+
+#### Response
+```
+201 Created
+Location: https://test.target365.io/api/strex/one-time-passwords/3202b85f-fac2-432a-8e55-a20ab8680211
+
 ```
 
 #### Response codes
@@ -264,6 +303,8 @@ Content-Type: application/json
     "OneTimePassword": "ONE_TIME_PASSWORD_FROM_USER"
 }
 ```
+<details>
+   <summary>curl example</summary>
 
 ```
 curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
@@ -276,6 +317,14 @@ curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
     "InvoiceText": "Donation test",
     "OneTimePassword": "ONE_TIME_PASSWORD_FROM_USER"
 }' 'https://test.target365.io/api/strex/transactions'
+```
+</details>
+
+#### Response
+```
+201 Created
+Location: https://test.target365.io/api/strex/transactions/3202b85f-fac2-432a-8e55-a20ab8680211
+
 ```
 
 #### Response codes
@@ -290,9 +339,18 @@ This example reverses a previously billed Strex payment transaction. The origina
 ```
 DELETE https://test.target365.io/api/strex/transactions/3202b85f-fac2-432a-8e55-a20ab8680211
 ```
+<details>
+   <summary>curl example</summary>
 
 ```
 curl -XDELETE -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" 'https://test.target365.io/api/strex/transactions/3202b85f-fac2-432a-8e55-a20ab8680211'
+```
+</details>
+
+#### Response
+```
+200 Ok
+
 ```
 
 #### Response
@@ -354,6 +412,9 @@ This parameter is optional:
 
 * SubscriptionStartSms - SMS that will be sent to the user when subscription starts.
 
+<details>
+   <summary>curl example</summary>
+
 ```
 curl -XPUT -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
     "ConfigId": "Test1",
@@ -370,6 +431,14 @@ curl -XPUT -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
     "SubscriptionPrice": 99,
     "SubscriptionStartSms": "Thanks for donating 99kr each month."
 }' 'https://test.target365.io/api/one-click/configs/Test1'
+```
+</details>
+
+#### Response
+```
+201 Created
+Location: https://test.target365.io/api/one-click/configs/Test1
+
 ```
 
 #### Response codes
@@ -400,6 +469,9 @@ Content-Type: application/json
 ```
 GET https://test.target365.io/api/strex/transactions/5402b85f-fac2-212a-8e55-a20ab8680765
 ```
+<details>
+   <summary>curl example</summary>
+
 
 ```
 curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
@@ -412,9 +484,22 @@ curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
     "InvoiceText": "Donation test"
 }' 'https://test.target365.io/api/strex/transactions'```
 ```
+</details>
+
+#### Response
+```
+201 Created
+Location: https://test.target365.io/api/strex/transactions/5402b85f-fac2-212a-8e55-a20ab8680765
+
+```
+
+<details>
+   <summary>curl example</summary>
+
 ```
 curl -XGET -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" 'https://test.target365.io/api/strex/transactions/5402b85f-fac2-212a-8e55-a20ab8680765'
 ```
+</details>
 
 #### Response
 ```JSON
@@ -445,9 +530,13 @@ This example looks up address information for the norwegian mobile number 980790
 GET https://test.target365.io/api/lookup?msisdn=+4798079008
 ```
 
+<details>
+   <summary>curl example</summary>
+
 ```
 curl -XGET -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" 'https://test.target365.io/api/lookup?msisdn=+4798079008'
 ```
+</details>
 
 #### Response
 ```JSON
@@ -492,6 +581,9 @@ Content-Type: application/json
 
 ```
 
+<details>
+   <summary>curl example</summary>
+
 ```
 curl -XGET -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
     "ShortNumberId": "NO-2002",
@@ -500,6 +592,14 @@ curl -XGET -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
     "ForwardUrl": "https://your-site.net/api/receive-sms",
     "Enabled": true
 }' 'https://test.target365.io/api/keywords'
+```
+</details>
+
+#### Response
+```
+201 Created
+Location: https://test.target365.io/api/keywords/546654745b85f-fac2-212a-8e55-a202348680778
+
 ```
 
 #### Response codes
@@ -515,8 +615,18 @@ This example deletes a keyword.
 DELETE https://test.target365.io/api/keywords/{keywordId}
 ```
 
+<details>
+   <summary>curl example</summary>
+
 ```
 curl -XDELETE -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" 'https://test.target365.io/api/keywords/{keywordId}'
+```
+</details>
+
+#### Response
+```
+200 Ok
+
 ```
 
 #### Response codes
