@@ -5,7 +5,7 @@ Strex AS is a Norwegian payment and SMS gateway (Strex Connect) provider. Strex 
 
 ### Getting started
 To get started, please click here: https://strex.no/strex-connect#Prispakker and register your organisation. 
-To get your API key, log in to your account at StrexConnect at https://www.strexconnect.no
+To get your API key, log in to your account at StrexConnect at https://www.strexconnect.no. 
 See our [C# User Guide](USERGUIDE.md) on how to authorize and use the API.
 
 ### Swagger
