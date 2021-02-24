@@ -450,7 +450,7 @@ Location: https://test.target365.io/api/one-click/configs/Test1
 This example sets up a recurring transaction for one-click. After creation you can immediately get the transaction to get the status code - the server will wait up to 20 seconds for the async transaction to complete.
 ![Recurring sequence](https://github.com/Target365/sdk-for-net/raw/master/oneclick-recurring-flow.png "Recurring sequence diagram")
 
-#### Requests
+#### POST request
 ```
 POST https://test.target365.io/api/strex/transactions
 Content-Type: application/json
@@ -490,6 +490,7 @@ Location: https://test.target365.io/api/strex/transactions/5402b85f-fac2-212a-8e
 
 ```
 
+#### GET request
 ```
 GET https://test.target365.io/api/strex/transactions/5402b85f-fac2-212a-8e55-a20ab8680765
 ```
