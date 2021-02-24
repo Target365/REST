@@ -466,9 +466,6 @@ Content-Type: application/json
 }
 
 ```
-```
-GET https://test.target365.io/api/strex/transactions/5402b85f-fac2-212a-8e55-a20ab8680765
-```
 <details>
    <summary>curl example</summary>
 
@@ -493,6 +490,9 @@ Location: https://test.target365.io/api/strex/transactions/5402b85f-fac2-212a-8e
 
 ```
 
+```
+GET https://test.target365.io/api/strex/transactions/5402b85f-fac2-212a-8e55-a20ab8680765
+```
 <details>
    <summary>curl example</summary>
 
