@@ -31,6 +31,3 @@ Please feel free to raise an issue against this repository if you have any quest
 ### Contributing
 New contributors to this project are welcome. If you are interested in contributing please
 send an email to sdk@strex.no.
-
-### License
-This library is released under the MIT license.
