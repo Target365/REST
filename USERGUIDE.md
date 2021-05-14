@@ -62,10 +62,10 @@ POST https://test.target365.io/api/out-messages
 Content-Type: application/json
 
 {
-    "TransactionId": "8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3",
-    "Sender": "Target365",
-    "Recipient": "+4798079008",
-    "Content": "Hello World from SMS!"
+    "transactionId": "8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3",
+    "sender": "Target365",
+    "recipient": "+4798079008",
+    "content": "Hello World from SMS!"
 }
 ```
 <details>
@@ -73,10 +73,10 @@ Content-Type: application/json
 
 ```
 curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
-    "TransactionId": "8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3",
-    "Sender": "Target365",
-    "Recipient": "+4798079008",
-    "Content": "Hello World from SMS!"
+    "transactionId": "8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3",
+    "sender": "Target365",
+    "recipient": "+4798079008",
+    "content": "Hello World from SMS!"
 }' 'https://test.target365.io/api/out-messages'
 ```
 </details>
@@ -102,11 +102,11 @@ POST https://test.target365.io/api/out-messages
 Content-Type: application/json
 
 {
-    "TransactionId": "8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3",
-    "Sender": "Target365",
-    "Recipient": "+4798079008",
-    "Content": "Hello World from SMS!",
-    "SendTime" : "2021-04-12T13:27:50Z"
+    "transactionId": "8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3",
+    "sender": "Target365",
+    "recipient": "+4798079008",
+    "content": "Hello World from SMS!",
+    "sendTime" : "2021-04-12T13:27:50Z"
 }
 ```
 <details>
@@ -114,11 +114,11 @@ Content-Type: application/json
 
 ```
 curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
-    "TransactionId": "8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3",
-    "Sender": "Target365",
-    "Recipient": "+4798079008",
-    "Content": "Hello World from SMS!",
-    "SendTime" : "2021-04-12T13:27:50Z"
+    "transactionId": "8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3",
+    "sender": "Target365",
+    "recipient": "+4798079008",
+    "content": "Hello World from SMS!",
+    "sendTime" : "2021-04-12T13:27:50Z"
 }' 'https://test.target365.io/api/out-messages'
 ```
 </details>
@@ -147,11 +147,11 @@ POST https://test.target365.io/api/out-messages
 Content-Type: application/json
 
 {
-    "TransactionId": "8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3",
-    "Sender": "Target365",
-    "Recipient": "+4798079008",
-    "Content": "Hello World from SMS an hour later!",
-    "SendTime" : "2021-04-14T13:27:50Z"
+    "transactionId": "8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3",
+    "sender": "Target365",
+    "recipient": "+4798079008",
+    "content": "Hello World from SMS an hour later!",
+    "sendTime" : "2021-04-14T13:27:50Z"
 }
 ```
 
@@ -194,14 +194,14 @@ POST https://test.target365.io/api/strex/transactions
 Content-Type: application/json
 
 {
-    "TransactionId": "8502b85f-fac2-47cc-8e55-a20ab8680427",
-    "ShortNumber": "2002",
-    "Recipient": "+4798079008",
-    "MerchantId" : "YOUR_MERCHANT_ID",
-    "Price": 1,
-    "ServiceCode": "ServiceCodes.NonCommercialDonation",
-    "InvoiceText": "Donation test",
-    "SmsConfirmation": true,
+    "transactionId": "8502b85f-fac2-47cc-8e55-a20ab8680427",
+    "shortNumber": "2002",
+    "recipient": "+4798079008",
+    "merchantId" : "YOUR_MERCHANT_ID",
+    "price": 1,
+    "serviceCode": "ServiceCodes.NonCommercialDonation",
+    "invoiceText": "Donation test",
+    "smsConfirmation": true,
     "properties": {
       "message_prefix": "Dear customer...",
       "message_suffix": "Best regards..."
@@ -213,14 +213,14 @@ Content-Type: application/json
 
 ```
 curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
-    "TransactionId": "8502b85f-fac2-47cc-8e55-a20ab8680427",
-    "ShortNumber": "2002",
-    "Recipient": "+4798079008",
-    "MerchantId" : "YOUR_MERCHANT_ID",
-    "Price": 1,
-    "ServiceCode": "14002",
-    "InvoiceText": "Donation test",
-    "SmsConfirmation": true,
+    "transactionId": "8502b85f-fac2-47cc-8e55-a20ab8680427",
+    "shortNumber": "2002",
+    "recipient": "+4798079008",
+    "merchantId" : "YOUR_MERCHANT_ID",
+    "price": 1,
+    "serviceCode": "14002",
+    "invoiceText": "Donation test",
+    "smsConfirmation": true,
     "properties": {
       "message_prefix": "Dear customer...",
       "message_suffix": "Best regards..."
@@ -250,12 +250,12 @@ POST https://test.target365.io/api/strex/one-time-passwords
 Content-Type: application/json
 
 {
-    "TransactionId": "3202b85f-fac2-432a-8e55-a20ab8680211",
-    "MerchantId": "YOUR_MERCHANT_ID",
-    "Recipient": "+4798079008",
-    "MessagePrefix": "Dear customer...",
-    "MessageSuffix": "Best Regards...",
-    "Recurring": false
+    "transactionId": "3202b85f-fac2-432a-8e55-a20ab8680211",
+    "merchantId": "YOUR_MERCHANT_ID",
+    "recipient": "+4798079008",
+    "messagePrefix": "Dear customer...",
+    "messageSuffix": "Best Regards...",
+    "recurring": false
 }
 ```
 <details>
@@ -263,12 +263,12 @@ Content-Type: application/json
 
 ```
 curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
-    "TransactionId": "3202b85f-fac2-432a-8e55-a20ab8680211",
-    "MerchantId": "YOUR_MERCHANT_ID",
-    "Recipient": "+4798079008",
-    "MessagePrefix": "Dear customer...",
-    "MessageSuffix": "Best Regards...",
-    "Recurring": false,
+    "transactionId": "3202b85f-fac2-432a-8e55-a20ab8680211",
+    "merchantId": "YOUR_MERCHANT_ID",
+    "recipient": "+4798079008",
+    "messagePrefix": "Dear customer...",
+    "messageSuffix": "Best Regards...",
+    "recurring": false,
 }' 'https://test.target365.io/api/strex/one-time-passwords'
 ```
 </details>
@@ -293,14 +293,14 @@ POST https://test.target365.io/api/strex/transactions
 Content-Type: application/json
 
 {
-    "TransactionId": "3202b85f-fac2-432a-8e55-a20ab8680211",
-    "ShortNumber": "2002",
-    "Recipient": "+4798079008",
-    "MerchantId": "YOUR_MERCHANT_ID",
-    "Price": 1,
-    "ServiceCode": "14002",
-    "InvoiceText": "Donation test",
-    "OneTimePassword": "ONE_TIME_PASSWORD_FROM_USER"
+    "transactionId": "3202b85f-fac2-432a-8e55-a20ab8680211",
+    "shortNumber": "2002",
+    "recipient": "+4798079008",
+    "merchantId": "YOUR_MERCHANT_ID",
+    "price": 1,
+    "serviceCode": "14002",
+    "invoiceText": "Donation test",
+    "oneTimePassword": "ONE_TIME_PASSWORD_FROM_USER"
 }
 ```
 <details>
@@ -308,14 +308,14 @@ Content-Type: application/json
 
 ```
 curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
-    "TransactionId": "3202b85f-fac2-432a-8e55-a20ab8680211",
-    "ShortNumber": "2002",
-    "Recipient": "+4798079008",
-    "MerchantId: "YOUR_MERCHANT_ID",
-    "Price": 1,
-    "ServiceCode": "14002",
-    "InvoiceText": "Donation test",
-    "OneTimePassword": "ONE_TIME_PASSWORD_FROM_USER"
+    "transactionId": "3202b85f-fac2-432a-8e55-a20ab8680211",
+    "shortNumber": "2002",
+    "recipient": "+4798079008",
+    "merchantId: "YOUR_MERCHANT_ID",
+    "price": 1,
+    "serviceCode": "14002",
+    "invoiceText": "Donation test",
+    "oneTimePassword": "ONE_TIME_PASSWORD_FROM_USER"
 }' 'https://test.target365.io/api/strex/transactions'
 ```
 </details>
@@ -356,7 +356,7 @@ curl -XDELETE -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" 'ht
 #### Response
 ```JSON
 {
-    "TransactionId": "-3202b85f-fac2-432a-8e55-a20ab8680211"
+    "transactionId": "-3202b85f-fac2-432a-8e55-a20ab8680211"
 }
 ```
 #### Response codes
@@ -384,19 +384,19 @@ PUT https://test.target365.io/api/one-click/configs/Test1
 Content-Type: application/json
 
 {
-    "ConfigId": "Test1",
-    "ShortNumber": "2002",
-    "Price": 99,
-    "MerchantId": "YOUR_MERCHANT_ID",
-    "ServiceCode": "14002",
-    "OnlineText": "Buy directly",
-    "OfflineText": "Buy with PIN-code",
-    "InvoiceText": "Donation test",
-    "RedirectUrl": "https://your-return-url.com?id={TransactionId}",
-    "Recurring": true,
-    "SubscriptionInterval": "monthly",
-    "SubscriptionPrice": 99,
-    "SubscriptionStartSms": "Thanks for donating 99kr each month."
+    "configId": "Test1",
+    "shortNumber": "2002",
+    "price": 99,
+    "merchantId": "YOUR_MERCHANT_ID",
+    "serviceCode": "14002",
+    "onlineText": "Buy directly",
+    "offlineText": "Buy with PIN-code",
+    "invoiceText": "Donation test",
+    "redirectUrl": "https://your-return-url.com?id={TransactionId}",
+    "recurring": true,
+    "subscriptionInterval": "monthly",
+    "subscriptionPrice": 99,
+    "subscriptionStartSms": "Thanks for donating 99kr each month."
 }
 ```
 
@@ -417,19 +417,19 @@ This parameter is optional:
 
 ```
 curl -XPUT -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
-    "ConfigId": "Test1",
-    "ShortNumber": "2002",
-    "Price": 99,
-    "MerchantId": "YOUR_MERCHANT_ID",
-    "ServiceCode": "14002",
-    "OnlineText": "Buy directly",
-    "OfflineText": "Buy with PIN-code",
-    "InvoiceText: "Donation test",
-    "RedirectUrl": "https://your-return-url.com?id={TransactionId}", // {TransactionId} is replaced by actual transaction id
-    "Recurring": true,
-    "SubscriptionInterval": "monthly",
-    "SubscriptionPrice": 99,
-    "SubscriptionStartSms": "Thanks for donating 99kr each month."
+    "configId": "Test1",
+    "shortNumber": "2002",
+    "price": 99,
+    "merchantId": "YOUR_MERCHANT_ID",
+    "serviceCode": "14002",
+    "onlineText": "Buy directly",
+    "offlineText": "Buy with PIN-code",
+    "invoiceText: "Donation test",
+    "redirectUrl": "https://your-return-url.com?id={TransactionId}", // {TransactionId} is replaced by actual transaction id
+    "recurring": true,
+    "subscriptionInterval": "monthly",
+    "subscriptionPrice": 99,
+    "subscriptionStartSms": "Thanks for donating 99kr each month."
 }' 'https://test.target365.io/api/one-click/configs/Test1'
 ```
 </details>
@@ -456,13 +456,13 @@ POST https://test.target365.io/api/strex/transactions
 Content-Type: application/json
 
 {
-    "TransactionId": "5402b85f-fac2-212a-8e55-a20ab8680765",
-    "Recipient": "RECIPIENT_FROM_SUBSCRIPTION_TRANSACTION",
-    "ShortNumber": "2002",
-    "MerchantId": "YOUR_MERCHANT_ID",
-    "Price": 1,
-    "ServiceCode": "14002",
-    "InvoiceText": "Donation test"
+    "transactionId": "5402b85f-fac2-212a-8e55-a20ab8680765",
+    "recipient": "RECIPIENT_FROM_SUBSCRIPTION_TRANSACTION",
+    "shortNumber": "2002",
+    "merchantId": "YOUR_MERCHANT_ID",
+    "price": 1,
+    "serviceCode": "14002",
+    "invoiceText": "Donation test"
 }
 
 ```
@@ -472,13 +472,13 @@ Content-Type: application/json
 
 ```
 curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
-    "TransactionId": "5402b85f-fac2-212a-8e55-a20ab8680765",
-    "Recipient": "RECIPIENT_FROM_SUBSCRIPTION_TRANSACTION",
-    "ShortNumber": "2002",
-    "MerchantId": "YOUR_MERCHANT_ID",
-    "Price": 1,
-    "ServiceCode": "14002",
-    "InvoiceText": "Donation test"
+    "transactionId": "5402b85f-fac2-212a-8e55-a20ab8680765",
+    "recipient": "RECIPIENT_FROM_SUBSCRIPTION_TRANSACTION",
+    "shortNumber": "2002",
+    "merchantId": "YOUR_MERCHANT_ID",
+    "price": 1,
+    "serviceCode": "14002",
+    "invoiceText": "Donation test"
 }' 'https://test.target365.io/api/strex/transactions'```
 ```
 </details>
@@ -573,11 +573,11 @@ POST https://test.target365.io/api/keywords
 Content-Type: application/json
 
 {
-    "ShortNumberId": "NO-2002",
-    "KeywordText": "HELLO",
-    "Mode": "Text",
-    "ForwardUrl": "https://your-site.net/api/receive-sms",
-    "Enabled": true
+    "shortNumberId": "NO-2002",
+    "keywordText": "HELLO",
+    "mode": "Text",
+    "forwardUrl": "https://your-site.net/api/receive-sms",
+    "enabled": true
 }
 
 ```
@@ -587,11 +587,11 @@ Content-Type: application/json
 
 ```
 curl -XGET -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
-    "ShortNumberId": "NO-2002",
-    "KeywordText": "HELLO",
-    "Mode": "Text",
-    "ForwardUrl": "https://your-site.net/api/receive-sms",
-    "Enabled": true
+    "shortNumberId": "NO-2002",
+    "keywordText": "HELLO",
+    "mode": "Text",
+    "forwardUrl": "https://your-site.net/api/receive-sms",
+    "enabled": true
 }' 'https://test.target365.io/api/keywords'
 ```
 </details>
