@@ -27,7 +27,7 @@
     * [SMS forward](#sms-forward)
     * [DLR forward](#dlr-forward)
     * [DLR status codes](#dlr-status-codes)
-* [Encoding](#encoding)
+* [Encoding and SMS length](#encoding-and-sms-length)
 
 ## Introduction
 The Target365 REST API gives you direct access to our online services like sending and receiving SMS, address lookup and Strex payment transactions. We encourage using our SDK's which provides an appropriate abstraction level for C# development and is officially support by Target365. The SDK's also implements very high security (ECDsaP256 HMAC) compared to the REST API secret key.
