@@ -8,6 +8,7 @@
     * [Swagger](#swagger)
 * [Text messages](#text-messages)
     * [Send an SMS](#send-an-sms)
+    * [Send an SMS with payment](#send-an-sms-with-payment)
     * [Schedule an SMS for later sending](#schedule-an-sms-for-later-sending)
     * [Edit a scheduled SMS](#edit-a-scheduled-sms)
     * [Delete a scheduled SMS](#delete-a-scheduled-sms)
@@ -94,6 +95,61 @@ Location: https://test.target365.io/api/out-messages/8eb5e79d-0b3d-4e50-a4dd-7a9
 * 400	Request had invalid payload.
 * 401	Request was unauthorized.
 
+### Send an SMS with payment
+This example sends an SMS with payment to 98079008 (+47 for Norway) from "Target365" with the text "Hello world from SMS!" and the price 1 krone.
+
+#### Request
+```
+POST https://test.target365.io/api/out-messages
+ 
+Content-Type: application/json  
+{  
+    "transactionId": "8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3",  
+    "sender": "2002",  
+    "recipient": "+4798079008",  
+    "content": "Hello World from SMS!",  
+    "strex":  
+    { 
+      "merchantId" : "YOUR_MERCHANT_ID",  
+      "price": 1,  
+      "serviceCode": "14002",  
+      "invoiceText": "Donation test"  
+    }  
+}
+```
+<details>
+   <summary>curl example</summary>
+
+```
+curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{  
+    "transactionId": "8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3",  
+    "sender": "2002",  
+    "recipient": "+4798079008",  
+    "content": "Hello World from SMS!",  
+    "strex":  
+    { 
+      "merchantId" : "YOUR_MERCHANT_ID",  
+      "price": 1,  
+      "serviceCode": "14002",  
+      "invoiceText": "Donation test"  
+    }  
+}' 'https://test.target365.io/api/out-messages'
+```
+</details>
+
+#### Response
+```
+201 Created
+Location: https://test.target365.io/api/out-messages/8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3
+
+```
+
+#### Response codes
+* 201	Out-message posted successfully. Location HTTP-header will contain resource uri.
+* 400	Request had invalid payload.
+* 401	Request was unauthorized.
+
+   
 ### Schedule an SMS for later sending
 This example sets up a scheduled SMS. Scheduled messages can be updated or deleted before the time of sending.
 
