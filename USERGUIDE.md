@@ -768,7 +768,7 @@ Delivery reports contains two status codes, one overall called `StatusCode` and 
 |Expired|Message validity period has expired|
 |Undelivered|Message is undeliverable|
 |UnknownError|Obsolete. Replaced by OtherError|
-|OtherError||   
+|OtherError|Billing is not done, and MT is not delivered. OtherError is a collective status for many different errors, but they are few in number and we have arranged it like this to avoid hundreds of different error-details. If you have a large number of this status, please contact us so we may analyze your traffic.|   
 |Rejected|Message has been rejected|
 |UnknownSubscriber|Unknown subscriber|
 |SubscriberUnavailable|Subscriber unavailable|
