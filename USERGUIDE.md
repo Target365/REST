@@ -768,7 +768,6 @@ Delivery reports contains two status codes, one overall called `StatusCode` and 
 |Expired|Message validity period has expired|
 |Undelivered|Message is undeliverable|
 |UnknownError|Obsolete. Replaced by OtherError|
-|OtherError|Billing is not done, and MT is not delivered. OtherError is a collective status for many different errors, but they are few in number and we have arranged it like this to avoid hundreds of different error-details. If you have a large number of this status, please contact us so we may analyze your traffic.|   
 |Rejected|Message has been rejected|
 |UnknownSubscriber|Unknown subscriber|
 |SubscriberUnavailable|Subscriber unavailable|
@@ -784,7 +783,8 @@ Delivery reports contains two status codes, one overall called `StatusCode` and 
 |OneTimePasswordFailed|One-time password failed|
 |SubscriberTooYoung|Subscriber too young|
 |TimeoutError|Timeout error|
-
+|OtherError|Miscellaneous. Errors not covered by statuses above.|
+   
 ## Encoding and SMS length
 When sending SMS messages, we'll automatically send messages in the most compact encoding possible. If you include any non GSM-7 characters in your message body, we will automatically fall back to UCS-2 encoding (which will limit message bodies to 70 characters each).
 
