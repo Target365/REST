@@ -8,6 +8,7 @@
     * [Swagger](#swagger)
 * [Text messages](#text-messages)
     * [Send an SMS](#send-an-sms)
+    * [Set DeliveryReport URL for an SMS](#set-deliveryreport-url-for-an-sms)
     * [Send an SMS with payment](#send-an-sms-with-payment)
     * [Schedule an SMS for later sending](#schedule-an-sms-for-later-sending)
     * [Edit a scheduled SMS](#edit-a-scheduled-sms)
@@ -95,6 +96,22 @@ Location: https://test.target365.io/api/out-messages/8eb5e79d-0b3d-4e50-a4dd-7a9
 * 400	Request had invalid payload.
 * 401	Request was unauthorized.
 
+### Set DeliveryReport URL for an SMS
+This example sends an SMS and later a [DeliveryReport](#dlr-forward) will be posted at the url specified below.
+#### Request
+```
+POST https://test.target365.io/api/out-messages
+Content-Type: application/json
+
+{
+    "transactionId": "8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3",
+    "sender": "Target365",
+    "recipient": "+4798079008",
+    "content": "Hello World from SMS!",
+    "deliveryReportUrl": "https://your.site.com/sms/dlr"
+}
+```
+   
 ### Send an SMS with payment
 This example sends an SMS with payment to 98079008 (+47 for Norway) from "Target365" with the text "Hello world from SMS!" and the price 1 krone.
 
