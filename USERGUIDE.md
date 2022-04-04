@@ -8,6 +8,7 @@
     * [Swagger](#swagger)
 * [Text messages](#text-messages)
     * [Send an SMS](#send-an-sms)
+    * [Send a batch of SMS](#send-a-batch-of-sms)
     * [Set DeliveryReport URL for an SMS](#set-deliveryreport-url-for-an-sms)
     * [Send an SMS with payment](#send-an-sms-with-payment)
     * [Schedule an SMS for later sending](#schedule-an-sms-for-later-sending)
@@ -119,18 +120,18 @@ This example sends 2 SMS with one post.
 POST https://test.target365.io/api/out-messages/batch
 Content-Type: application/json
 [
-{
-    "transactionId": "8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3",
-    "sender": "Target365",
-    "recipient": "+4798079008",
-    "content": "Hello World from SMS!"
-},
-{
-    "transactionId": "8ec2c921-85ca-4f8a-b3ad-c807801b0731",
-    "sender": "Target365",
-    "recipient": "+4799999999",
-    "content": "Hello World from SMS!"
-}
+   {
+       "transactionId": "8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3",
+       "sender": "Target365",
+       "recipient": "+4798079008",
+       "content": "Hello World from SMS!"
+   },
+   {
+       "transactionId": "8ec2c921-85ca-4f8a-b3ad-c807801b0731",
+       "sender": "Target365",
+       "recipient": "+4799999999",
+       "content": "Hello World from SMS!"
+   }
 ]
 ```
    
