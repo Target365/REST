@@ -52,8 +52,7 @@ The Target365 REST API gives you direct access to our online services like sendi
 * Add a header called "X-ApiKey" with the key from above to your requests.
 
 ### Swagger
-* Swagger for the API is located here: https://test.target365.io/api/swagger.json
-    * https://generator.swagger.io/?url=https%3A%2F%2Ftest.target365.io%2Fapi%2Fswagger.json
+* Swagger for the API is located here: https://shared.target365.io/api
 
 ## Text messages
 
