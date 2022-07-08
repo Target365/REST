@@ -295,7 +295,7 @@ Content-Type: application/json
     "recipient": "+4798079008",
     "merchantId" : "YOUR_MERCHANT_ID",
     "price": 1,
-    "serviceCode": "ServiceCodes.NonCommercialDonation",
+    "serviceCode": "14002",
     "invoiceText": "Donation test",
     "smsConfirmation": true,
     "properties": {
