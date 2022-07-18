@@ -12,6 +12,7 @@
     * [Set DeliveryReport URL for an SMS](#set-deliveryreport-url-for-an-sms)
     * [Send an SMS with payment](#send-an-sms-with-payment)
     * [Schedule an SMS for later sending](#schedule-an-sms-for-later-sending)
+    * [Add tags to message](#add-tags-to-message)
     * [Edit a scheduled SMS](#edit-a-scheduled-sms)
     * [Delete a scheduled SMS](#delete-a-scheduled-sms)
 * [Payment transactions](#payment-transactions)
@@ -231,6 +232,55 @@ Location: https://test.target365.io/api/out-messages/8eb5e79d-0b3d-4e50-a4dd-7a9
 * 400	Request had invalid payload.
 * 401	Request was unauthorized.
 
+### Add tags to message
+This example show how to add tags to a message that can be used for statistics and grouping. Hierachies can be created with /. In the future, tags may only contain a-z0-9. Urls are allowed as an exception, so that '//' doesn't make hierarchy.
+
+#### Request
+```
+POST https://test.target365.io/api/out-messages
+Content-Type: application/json
+
+{
+    "transactionId": "3280ed28-5de9-40cd-afa9-eea6ad897b29",
+    "sender": "Target365",
+    "recipient": "+4798079008",
+    "content": "Hello World from SMS!",
+    "sendTime" : "2021-04-12T13:27:50Z",
+    "tags": [
+    "tag1",
+    "group/subgroup/tag2"
+  ],
+}
+```
+<details>
+   <summary>curl example</summary>
+
+```
+curl -XPOST -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" -d '{
+    "transactionId": "3280ed28-5de9-40cd-afa9-eea6ad897b29",
+    "sender": "Target365",
+    "recipient": "+4798079008",
+    "content": "Hello World from SMS!",
+    "sendTime" : "2021-04-12T13:27:50Z",
+    "tags": [
+    "tag1",
+    "group/subgroup/tag2"
+}' 'https://test.target365.io/api/out-messages'
+```
+</details>
+
+#### Response
+```
+201 Created
+Location: https://test.target365.io/api/out-messages/3280ed28-5de9-40cd-afa9-eea6ad897b29
+
+```
+
+#### Response codes
+* 201	Out-message posted successfully. Location HTTP-header will contain resource uri.
+* 400	Request had invalid payload.
+* 401	Request was unauthorized.
+   
 ### Edit a scheduled SMS
 This example shows how you can get a previously created scheduled SMS and post it again with a new sendtime and content.
 
