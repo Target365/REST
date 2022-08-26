@@ -10,7 +10,7 @@ See our [REST User Guide](USERGUIDE.md) on how to authorize and use the API.
 
 ### Swagger
 * Swagger for the API is located here: https://test.target365.io/api/swagger.json
-    * https://generator.swagger.io/?url=https%3A%2F%2Ftest.target365.io%2Fapi%2Fswagger.json
+* https://shared.target365.io/api
 
 ### Test Environment
 Our test-environment acts as a sandbox that simulates the real API as closely as possible. This can be used to get familiar with the service before going to production. Please be ware that the simulation isn't perfect and must not be taken to have 100% fidelity.
