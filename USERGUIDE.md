@@ -904,9 +904,7 @@ GET https://test.target365.io/api/pincodes/verification?transactionId=8eb5e79d-0
 ```
 #### Response
 ```
-{
-   true / false
-}
+   True / False
 ```
 ## Encoding and SMS length
 When sending SMS messages, we'll automatically send messages in the most compact encoding possible. If you include any non GSM-7 characters in your message body, we will automatically fall back to UCS-2 encoding (which will limit message bodies to 70 characters each).
