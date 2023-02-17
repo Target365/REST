@@ -905,10 +905,12 @@ Content-Type: application/json
   "recipient": "+4798079008",
   "sender": "Target365",
   "prefixText": "Your pin code is ",
-  "suffixText": " to log on to acme.inc"
+  "suffixText": " to log on to acme.inc",
+  "pincodeLength": 4
 }
 ```
-
+PrefixText, SuffixText and PincodeLength are optional. If specified, PincodeLength must be between 4 and 6.
+   
 ### Verify pincode
 This example shows how to verify the pincode sent in the previous step and entered on a web page by the user. Use the TransactionId provided in the previous step.
 #### Request
