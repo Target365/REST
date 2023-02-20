@@ -912,7 +912,8 @@ Content-Type: application/json
 PrefixText, SuffixText and PincodeLength are optional. If specified, PincodeLength must be between 4 and 6.
    
 ### Verify pincode
-This example shows how to verify the pincode sent in the previous step and entered on a web page by the user. Use the TransactionId provided in the previous step.
+This example shows how to verify the pincode sent in the previous step and entered on a web page by the user. Use the TransactionId provided in the previous step. Pincode is valid for five minutes.
+   
 #### Request
 ```
 GET https://test.target365.io/api/pincodes/verification?transactionId=8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c4&pincode=1234
