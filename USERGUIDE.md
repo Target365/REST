@@ -254,7 +254,7 @@ Content-Type: application/json
     "sendTime" : "2021-04-12T13:27:50Z",
     "tags": [
     "tag1",
-    "group/subgroup/tag2"
+    "grouping:group/subgroup/tag2"
   ],
 }
 ```
