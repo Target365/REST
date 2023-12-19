@@ -48,9 +48,11 @@ The Target365 REST API gives you direct access to our online services like sendi
 * https://github.com/Target365/sdk-for-python
 
 ## Generate API key
-* Log in to your account at StrexConnect at https://www.strexconnect.no
-* Select "API KEYS" from the top menu
-* Click "Add api key" and enter a name
+* Log in to your account at https://www.strexconnect.no
+* Select "API keys" from the gear icon in the upper right corner
+* Click the button "Add API key"
+* Enter a name for the key
+* Add an expiry date for the new API key. The system suggests a date 365 days from now. Max expiry is 3 years from now
 * Click "Save"
 * Copy the "API key" string
 
