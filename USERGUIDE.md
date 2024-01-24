@@ -396,7 +396,7 @@ Location: https://test.target365.io/api/strex/transactions/8502b85f-fac2-47cc-8e
 * 401	Request was unauthorized.
 
 ### Create a Strex payment transaction with one-time password
-This example creates a Strex one-time password sent to the end user and get completes the payment by using the one-time password. You can use MessagePrefix and MessageSuffix to influence the start and end of the SMS sent by Strex.
+This example creates a Strex one-time password sent to the end user and get completes the payment by using the one-time password. You can use MessagePrefix and MessageSuffix to influence the start and end of the SMS sent by Strex. In the Test Environment - with endpoint https://test.target365.io - the OTP is always 1234.
 
 #### Request
 ```
