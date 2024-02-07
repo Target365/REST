@@ -15,6 +15,7 @@
     * [Add tags to message](#add-tags-to-message)
     * [Edit a scheduled SMS](#edit-a-scheduled-sms)
     * [Delete a scheduled SMS](#delete-a-scheduled-sms)
+    * [Delivery mode](#delivery-mode)
 * [Payment transactions](#payment-transactions)
     * [Create a Strex payment transaction](#create-a-strex-payment-transaction)
     * [Create a Strex payment transaction with one-time password](#create-a-strex-payment-transaction-with-one-time-password)
@@ -334,6 +335,13 @@ curl -XDELETE -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" 'ht
 * 204	Out-message deleted successfully.
 * 404	Out-message not found.
 * 409	Out-message could not be deleted.
+
+### Delivery mode
+We support explicitly specifying delivery mode AtMostOnce or AtLeastOnce via the deliveryMode property.
+* AtMostOnce delivery mode means that for a message processed by our platform, that message is delivered once or not at all. In more casual terms it means that the message may be lost.
+* AtLeastOnce delivery mode means that for a message processed by our platform, potentially multiple attempts are made at delivering it, such that at least one succeeds. In more casual terms this means that the message may be duplicated but not lost.
+
+AtMostOnce and AtLeastOnce delivery mode is only in effect in extreme edge cases where we've lost connection to an operator with a request mid-flight and have no way of knowing whether the message was delivered or not.
 
 ## Payment transactions
 If your service requires a minimum age of the End User, each payment transaction should be defined with minimum age. Both StrexTransaction and OutMessage have a property named “Age”. If not set or present in the request, there is no age limit.
