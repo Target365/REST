@@ -37,6 +37,10 @@
     * [Verify pincode](#verify-pincode)
 * [Encoding and SMS length](#encoding-and-sms-length)
     * [Automatic character replacements](#automatic-character-replacements)
+* [Pre-authorization](#pre-authorization)
+   * [Pre-authorization via keyword](#pre-authorization-via-keyword)
+   * [Pre-authorization via API](#pre-authorization-via-api)
+   * [Rebilling with pre-authorization](#rebilling-with-pre-authorization)
 * [Testing](#testing)
     * [Fake numbers](#fake-numbers)
 
@@ -972,6 +976,118 @@ Unless you spesifically set the AllowUnicode property to true, we will automatic
 |\uFEFF|(regular space)|
 
 *Please note that we might remove or add Unicode characters that are automatically replaced. This is an "best effort" to save on SMS costs!*
+
+## Pre-authorization
+Some Strex service codes require recurring billing to be authorized by the user via a confirmation sms or sms pincode.
+This can be achieved either via direct API calls or setting it up to be handled automatically via a keyword.
+
+### Pre-authorization via keyword
+Automatic pre-authorization can be activated on a keyword by either activating it in the
+PreAuth section of the keyword in Strex Connect or via the SDK
+
+```http
+POST /api/keywords
+{
+    "shortNumberId": "NO-2002",
+    "keywordText": "HELLO",
+    "mode": "Text",
+    "forwardUrl": "https://your-site.net/api/receive-sms",
+    "enabled": true,
+    "preAuthSettings":
+    {
+        "active": true,
+        "infoText": "Info message sent before preauth message",
+        "infoSender": "2002",
+        "prefixMessage": "Text inserted before preauth text",
+        "postfixMessage": "Text inserted after preauth text",
+        "delay": 1,
+        "merchantId": "Your merchant id",
+        "serviceDescription": "Service description"
+    }
+}
+```
+
+In-messages forwarded to you will then look like this:
+```http
+POST https://your-site.net/api/receive-sms HTTP/1.1
+Content-Type: application/json
+
+{
+  "transactionId":"00568c6b-7baf-4869-b083-d22afc163059",
+  "created": "2021-12-06T09:50:00+00:00",
+  "keywordId": "12345678",
+  "sender":"+4798079008",
+  "recipient":"2002",
+  "content": "HELLO",
+  "properties": {
+    "ServiceId": "1234",
+    "preAuthorization": true
+  }
+}
+```
+
+If PreAuthorization was not successfully performed, "preAuthorization" will be false.
+
+The new properties are ServiceId and preAuthorization. ServiceId must be added to the outmessage/transaction when doing rebilling in the "preAuthServiceId" field. 
+The ServiceId is always the same for one keyword. Incoming messages forwarded with "preAuthorization" set as "false" are not possible
+to bill via Strex Payment.
+
+### Pre-authorization via API
+Pre-authorization via API can be used with either SMS confirmation or OTP (one-time-passord). SMS confirmation is used by default if OneTimePassword isn't used.
+PreAuthServiceId is an id chosen by you and must be used for all subsequent rebilling. PreAuthServiceDescription is optional, but should be set as this text will be visible for the end user on the Strex "My Page" web page.
+
+Example using OTP (one-time-passord) flow:
+
+```http
+POST /api/strex/one-time-passwords
+{
+  "transactionId": "8502b85f-fac2-47cc-8e55-a20ab8680427",
+  "merchantId": "mer_test",
+  "recipient": "+4798079008",
+  "sender": "Test",
+  "recurring": true
+}
+```
+
+Get input from end user (eg. via your web site) and then post a strex transaction with the code your end user gave.
+In this case let's assume the correct pin-code was "1234" and the end user has given you this code.
+
+```http
+POST /api/strex/transactions
+{
+  "invoiceText": "Thank you for your donation",
+  "merchantId": "mer_test",
+  "price": 10.5,
+  "age": 18,
+  "recipient": "+4798079008",
+  "serviceCode": "14002",
+  "shortNumber": "2002",
+  "transactionId": "8502b85f-fac2-47cc-8e55-a20ab8680427",
+  "preAuthServiceId": "your-service-id",
+  "preAuthServiceDescription": "your-service-description",
+  "oneTimePassword": "1234"
+}
+```
+
+### Rebilling with pre-authorization:
+After you've established an end-user agreement you can then bill further for your service with regular POST strex transaction requests. Here's an example:
+
+```http
+POST /api/strex/transactions
+{
+  "invoiceText": "Thank you for your donation",
+  "merchantId": "mer_test",
+  "price": 10,
+  "age": 18,
+  "recipient": "+4798079008",
+  "content": "your-sms-text-to-end-user",
+  "serviceCode": "14002",
+  "shortNumber": "2002",
+  "transactionId": "8502b85f-fac2-47cc-8e55-a20ab8680427",
+  "preAuthServiceId": "your-service-id",
+  "preAuthServiceDescription": "your-subscription-description",
+}
+```
 
 ## Testing
 
