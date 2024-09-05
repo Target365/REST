@@ -39,7 +39,8 @@
     * [Automatic character replacements](#automatic-character-replacements)
 * [Pre-authorization](#pre-authorization)
    * [Pre-authorization via keyword](#pre-authorization-via-keyword)
-   * [Pre-authorization via API](#pre-authorization-via-api)
+   * [Pre-authorization via API with SMS](#pre-authorization-via-api-with-sms)
+   * [Pre-authorization via API with OTP](#pre-authorization-via-api-with-otp)
    * [Rebilling with pre-authorization](#rebilling-with-pre-authorization)
 * [Testing](#testing)
     * [Fake numbers](#fake-numbers)
@@ -1032,11 +1033,29 @@ The new properties are ServiceId and preAuthorization. ServiceId must be added t
 The ServiceId is always the same for one keyword. Incoming messages forwarded with "preAuthorization" set as "false" are not possible
 to bill via Strex Payment.
 
-### Pre-authorization via API
-Pre-authorization via API can be used with either SMS confirmation or OTP (one-time-passord). SMS confirmation is used by default if OneTimePassword isn't used.
+### Pre-authorization via API with SMS
+Pre-authorization via API can be used with SMS confirmation.
 PreAuthServiceId is an id chosen by you and must be used for all subsequent rebilling. PreAuthServiceDescription is optional, but should be set as this text will be visible for the end user on the Strex "My Page" web page.
 
-Example using OTP (one-time-passord) flow:
+```http
+POST /api/strex/transactions
+{
+  "invoiceText": "Thank you for your donation",
+  "merchantId": "mer_test",
+  "price": 10.5,
+  "age": 18,
+  "recipient": "+4798079008",
+  "serviceCode": "14002",
+  "shortNumber": "2002",
+  "transactionId": "8502b85f-fac2-47cc-8e55-a20ab8680427",
+  "preAuthServiceId": "your-service-id",
+  "preAuthServiceDescription": "your-service-description"
+}
+```
+
+### Pre-authorization via API with OTP
+Pre-authorization via API can be used with either SMS confirmation or OTP (one-time-passord). SMS confirmation is used by default if OneTimePassword isn't used.
+PreAuthServiceId is an id chosen by you and must be used for all subsequent rebilling. PreAuthServiceDescription is optional, but should be set as this text will be visible for the end user on the Strex "My Page" web page.
 
 ```http
 POST /api/strex/one-time-passwords
