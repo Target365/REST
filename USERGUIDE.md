@@ -1035,7 +1035,7 @@ to bill via Strex Payment.
 
 ### Pre-authorization via API with SMS
 Pre-authorization via API can be used with SMS confirmation.
-PreAuthServiceId is an id chosen by you and must be used for all subsequent rebilling. PreAuthServiceDescription is optional, but should be set as this text will be visible for the end user on the Strex "My Page" web page.
+PreAuthServiceId is an id chosen by you and must be used for all subsequent rebilling. PreAuthServiceDescription is optional, but should be set as this text will be visible for the end user on the Strex "My Page" web page. Here's an example request:
 
 ```http
 POST /api/strex/transactions
@@ -1054,8 +1054,8 @@ POST /api/strex/transactions
 ```
 
 ### Pre-authorization via API with OTP
-Pre-authorization via API can be used with either SMS confirmation or OTP (one-time-passord). SMS confirmation is used by default if OneTimePassword isn't used.
-PreAuthServiceId is an id chosen by you and must be used for all subsequent rebilling. PreAuthServiceDescription is optional, but should be set as this text will be visible for the end user on the Strex "My Page" web page.
+Pre-authorization via API can be used with OTP (one-time-passord).
+PreAuthServiceId is an id chosen by you and must be used for all subsequent rebilling. PreAuthServiceDescription is optional, but should be set as this text will be visible for the end user on the Strex "My Page" web page. Here are example requests:
 
 ```http
 POST /api/strex/one-time-passwords
