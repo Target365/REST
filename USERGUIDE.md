@@ -921,10 +921,14 @@ Content-Type: application/json
   "sender": "Target365",
   "prefixText": "Your pin code is ",
   "suffixText": " to log on to acme.inc",
-  "pincodeLength": 4
+  "pincodeLength": 4,
+  "maxAttempts": 3,
+  "verificationMode": "AtLeastOnce",
+  "tags": ["Tag1", "Tag2"]
 }
 ```
-PrefixText, SuffixText and PincodeLength are optional. If specified, PincodeLength must be between 4 and 6.
+PrefixText, SuffixText and PincodeLength are optional. If specified, PincodeLength must be between 4 and 6. MaxAttempts must be between 1 and 5.
+AtLeastOnce verification is default and allows for idempotent verification. AtMostOnce only allows for a single verification.
    
 ### Verify pincode
 This example shows how to verify the pincode sent in the previous step and entered on a web page by the user. Use the TransactionId provided in the previous step. Pincode is valid for five minutes.
