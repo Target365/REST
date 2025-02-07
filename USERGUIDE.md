@@ -368,7 +368,6 @@ Content-Type: application/json
     "serviceCode": "14002",
     "invoiceText": "Donation test",
     "smsConfirmation": true
-    }
 }
 ```
 <details>
