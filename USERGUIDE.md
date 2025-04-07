@@ -65,6 +65,19 @@ The Target365 REST API gives you direct access to our online services like sendi
 ## Setup
 ### Authorization
 * Add a header called "X-ApiKey" with the key from above to your requests.
+* Example request:
+```
+POST https://test.target365.io/api/out-messages
+Content-Type: application/json
+X-ApiKey: ucFtN2***************************************************************************uiSgw==
+
+{
+    "transactionId": "8eb5e79d-0b3d-4e50-a4dd-7a939af4c4c3",
+    "sender": "Target365",
+    "recipient": "+4798079008",
+    "content": "Hello World from SMS!"
+}
+```
 
 ### Swagger
 * Swagger for the API is located here: https://shared.target365.io/api
