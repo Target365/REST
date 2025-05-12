@@ -1117,7 +1117,7 @@ POST /api/strex/transactions
   "shortNumber": "2002",
   "transactionId": "8502b85f-fac2-47cc-8e55-a20ab8680427",
   "preAuthServiceId": "your-service-id",
-  "preAuthServiceDescription": "your-subscription-description",
+  "preAuthServiceDescription": "your-subscription-description"
 }
 ```
 
