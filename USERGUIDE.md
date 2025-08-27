@@ -38,10 +38,11 @@
 * [Encoding and SMS length](#encoding-and-sms-length)
     * [Automatic character replacements](#automatic-character-replacements)
 * [Pre-authorization](#pre-authorization)
-   * [Pre-authorization via keyword](#pre-authorization-via-keyword)
-   * [Pre-authorization via API with SMS](#pre-authorization-via-api-with-sms)
-   * [Pre-authorization via API with OTP](#pre-authorization-via-api-with-otp)
-   * [Rebilling with pre-authorization](#rebilling-with-pre-authorization)
+    * [Pre-authorization via keyword](#pre-authorization-via-keyword)
+    * [Pre-authorization via API with SMS](#pre-authorization-via-api-with-sms)
+    * [Pre-authorization via API with OTP](#pre-authorization-via-api-with-otp)
+    * [Rebilling with pre-authorization](#rebilling-with-pre-authorization)
+    * [Delete a pre-authorization](#delete-a-pre-authorization)
 * [Testing](#testing)
     * [Fake numbers](#fake-numbers)
 
@@ -797,7 +798,7 @@ curl -XDELETE -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" 'ht
 
 #### Response
 ```
-200 Ok
+204 No content
 
 ```
 
@@ -1120,6 +1121,32 @@ POST /api/strex/transactions
   "preAuthServiceDescription": "your-subscription-description"
 }
 ```
+
+### Delete a pre-authorization
+This example deletes a pre-authorization. Use this when the end-user wants to stop further rebilling and you are handling the users at your end, and not within Strex Connect. This ensures that the user will get a new agreement if he wants to subscribe again in the future.
+
+#### Request
+```
+DELETE https://test.target365.io/api/strex/token/{your-merchant-id}?serviceId=your-service-id&msisdn=%2B4798079008
+```
+
+<details>
+   <summary>curl example</summary>
+
+```
+curl -XDELETE -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" 'https://test.target365.io/api/strex/token/{your-merchant-id}?serviceId=your-service-id&msisdn=%2B4798079008'
+```
+</details>
+
+#### Response
+```
+204 No content
+
+```
+
+#### Response codes
+* 204	Token deleted.
+* 404	Token not found.
 
 ## Testing
 
