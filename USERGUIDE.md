@@ -381,6 +381,7 @@ Content-Type: application/json
     "price": 1,
     "serviceCode": "14002",
     "invoiceText": "Donation test",
+    "content": "SMS_TEXT_TO_ENDUSER",
     "smsConfirmation": true
 }
 ```
@@ -472,6 +473,7 @@ Content-Type: application/json
     "price": 1,
     "serviceCode": "14002",
     "invoiceText": "Donation test",
+    "content": "SMS_TEXT_TO_ENDUSER",
     "oneTimePassword": "ONE_TIME_PASSWORD_FROM_USER"
 }
 ```
