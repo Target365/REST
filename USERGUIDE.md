@@ -42,6 +42,7 @@
     * [Pre-authorization via API with SMS](#pre-authorization-via-api-with-sms)
     * [Pre-authorization via API with OTP](#pre-authorization-via-api-with-otp)
     * [Rebilling with pre-authorization](#rebilling-with-pre-authorization)
+    * [Get a pre-authorization token](#get-a-pre-authorization-token)
     * [Delete a pre-authorization](#delete-a-pre-authorization)
 * [Testing](#testing)
     * [Fake numbers](#fake-numbers)
@@ -1123,6 +1124,31 @@ POST /api/strex/transactions
   "preAuthServiceDescription": "your-subscription-description"
 }
 ```
+
+### Get a pre-authorization token
+This example gets a pre-authorization token.
+
+#### Request
+```
+GET https://test.target365.io/api/strex/token/{your-merchant-id}?serviceId=your-service-id&msisdn=%2B4798079008
+```
+
+<details>
+   <summary>curl example</summary>
+
+```
+curl -XGET -H 'X-ApiKey: <KeyString>' -H "Content-type: application/json" 'https://test.target365.io/api/strex/token/{your-merchant-id}?serviceId=your-service-id&msisdn=%2B4798079008'
+```
+</details>
+
+#### Response
+```
+"K8JK4AOPQM2ZSXMB1KQO65IX"
+```
+
+#### Response codes
+* 200	Ok.
+* 404	Token not found.
 
 ### Delete a pre-authorization
 This example deletes a pre-authorization. Use this when the end-user wants to stop further rebilling and you are handling the users at your end, and not within Strex Connect. This ensures that the user will get a new agreement if he wants to subscribe again in the future.
