@@ -1009,6 +1009,7 @@ POST /api/keywords
     "preAuthSettings":
     {
         "active": true,
+        "age": 18,
         "infoText": "Info message sent before preauth message",
         "infoSender": "2002",
         "prefixMessage": "Text inserted before preauth text",
